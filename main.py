@@ -60,6 +60,7 @@ async def on_message(message):
 async def startrun(ctx):
     global x
     if ctx.channel.id == 993517852558626916 and x == 0:
+        channel = ctx.channel.id
         o = bot.get_guild(63597665411150644)
         timex = (datetime.datetime.now()+timedelta(minutes=60)).timestamp()
         await ctx.send(f"Setting inside timer for <t:{int(timex)}:R>")
