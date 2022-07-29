@@ -39,7 +39,7 @@ async def on_message(message):
             await message.channel.send(f"You can no longer count in this channel, <@{user}>. Run `c!user` in bot commands when you get a save, and I will give you the permission back.")
     if message.author.id == 510016054391734273:
         try:
-            o = bot.get_guild(guild)
+            o = bot.get_guild(635976654111506446)
             user = o.get_member_named((message.embeds)[0].title)
             a = ((message.embeds)[0].fields)[0].value
             a = a.split("\n")
