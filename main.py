@@ -28,14 +28,14 @@ async def on_message(message):
                 await message.add_reaction(emoji='💯')
             if count[::-1] == count:
                 await message.add_reaction(emoji='↔️')
-            count = bot.get_channel(993517852558626916).history(limit=500, before=datetime.datetime.now())
-            async for message in count:
-                count = message.content.split(" ")[0]
-                if count.isnumeric():
-                    last_number = message.created_at
-                    break
+        count = bot.get_channel(993517852558626916).history(limit=500, before=datetime.datetime.now())
+        async for message in count:
+            count = message.content.split(" ")[0]
+            if count.isnumeric():
+                last_number = message.created_at
+                break
         if last_number.minute + 2 < datetime.datetime.now().minute:
-            await message.channel.send("it has been more than 5 minutes since the last count")
+            await message.channel.send("it has been more than 2 minutes since the last count")
         else:
             print(last_number.minute)
             print(last_number.minute + 5)
