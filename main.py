@@ -34,7 +34,7 @@ async def on_message(message):
             if count.isnumeric():
                 last_number = message.created_at
                 break
-        print(last_number.minute())
+        await message.channel.send("last number was at "+ str(last_number.minute))
     if message.author.id == 510016054391734273 and message.channel.id == 993517852558626916:
         o = bot.get_guild(guild)
         if "You have used **1** of your saves. You have **0" in message.content or "You have used **1** guild save! There are **0" in message.content:
