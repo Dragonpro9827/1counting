@@ -13,7 +13,7 @@ intents.members = True
 intents.messages = True
 bot = commands.Bot(command_prefix="-", intents=intents)
 bot.remove_command('help')
-x = 0
+x = True
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user.name} ({bot.user.id})")
@@ -59,26 +59,28 @@ async def on_message(message):
 @bot.command()
 async def startrun(ctx):
     global x
-    if ctx.channel.id == 993517852558626916 and x == 0:
+    x = True
+    if ctx.channel.id == 993517852558626916 and x == True:
         channel = ctx.channel.id
         o = bot.get_guild(635976654111506446)
         timex = (datetime.datetime.now()+timedelta(minutes=60)).timestamp()
         await ctx.send(f"Setting inside timer for <t:{int(timex)}:R>")
-        x = 1
-        while x == 1:
+        while True:
+            if not x:
+                break
             await asyncio.sleep(5) 
             await ctx.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=False)
             timex = (datetime.datetime.now()+timedelta(minutes=10)).timestamp()
             await ctx.send(f"Sleepy Period Until <t:{int(timex)}:R>")
             await asyncio.sleep(5) 
-            x = 0
+            x = False
         await ctx.send("**Run over** please do `-startrun` to restart the timer")
         await ctx.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=True)
 @bot.command()
 async def cancel(ctx):
     global x
+    x = False
     await ctx.send("Cancelled Run")
-    x = 0
 
 @bot.command() 
 async def wrong(ctx, incorrect=0, percentage=0.0):
