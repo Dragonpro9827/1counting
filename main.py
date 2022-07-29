@@ -1,4 +1,3 @@
-from re import X
 import discord
 from discord.ext import commands
 import datetime
@@ -59,7 +58,7 @@ async def on_message(message):
 
 @bot.command()
 async def startrun(ctx):
-    global X
+    global x
     if ctx.channel.id == 993517852558626916 and x == 0:
         o = bot.get_guild(63597665411150644)
         timex = (datetime.datetime.now()+timedelta(minutes=60)).timestamp()
@@ -76,7 +75,7 @@ async def startrun(ctx):
         await ctx.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=True)
 @bot.command()
 async def cancel(ctx):
-    global X
+    global x
     x = 0
 
 @bot.command() 
