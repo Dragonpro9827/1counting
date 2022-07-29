@@ -85,7 +85,7 @@ async def cancel(ctx):
 @bot.command()
 async def run(ctx):
     global time
-    await ctx.send(f"Setting inside timer for <t:{int(time)}:R>")
+    await ctx.send(f"<t:{int(time)}:R>")
 @bot.command() 
 async def wrong(ctx, incorrect=0, percentage=0.0):
   perc=round(percentage,3)
