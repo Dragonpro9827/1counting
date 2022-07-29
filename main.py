@@ -35,10 +35,10 @@ async def on_message(message):
             if count.isnumeric():
                 last_number = message.created_at
                 break
-        if last_number.minute + 10 < datetime.datetime.now().minute:
+        if last_number.minute + 1 < datetime.datetime.now().minute:
             lock_time = datetime.datetime.now().minute
             await message.channel.edit(name=f"count-{lock_time}")
-        if last_number.minute == datetime.datetime.now().minute:
+        elif last_number.minute == datetime.datetime.now().minute:
             await message.channel.send(last_number.minute)
             await message.channel.send(datetime.datetime.now().minute)
             o = bot.get_guild(635976654111506446)
