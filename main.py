@@ -44,5 +44,9 @@ async def on_message(message):
         except Exception as e:
             print(e)
             pass
-
+@bot.command()
+async def test(ctx):
+    await ctx.send("TEST")
+        
+        
 bot.run(token)
