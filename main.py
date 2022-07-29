@@ -39,9 +39,9 @@ async def on_message(message):
             lock_time = datetime.datetime.now().minute
             await message.channel.edit(name=f"count-{lock_time}")
         if last_number.minute == datetime.datetime.now().minute:
-            await channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=False)
+            await message.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=False)
             await asyncio.sleep(600) 
-            await channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=True)
+            await message.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=True)
         
     if message.author.id == 510016054391734273 and message.channel.id == 993517852558626916:
         o = bot.get_guild(guild)
