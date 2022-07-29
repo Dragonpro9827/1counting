@@ -28,13 +28,15 @@ async def on_message(message):
                 await message.add_reaction(emoji='💯')
             if count[::-1] == count:
                 await message.add_reaction(emoji='↔️')
-        count = bot.get_channel(993517852558626916).history(limit=500, before=datetime.datetime.now())
-        async for message in count:
-            count = message.content.split(" ")[0]
-            if count.isnumeric():
-                last_number = message.created_at
-                break
-        await message.channel.send("last number was at "+ str(last_number.minute))
+            count = bot.get_channel(993517852558626916).history(limit=500, before=datetime.datetime.now())
+            async for message in count:
+                count = message.content.split(" ")[0]
+                if count.isnumeric():
+                    last_number = message.created_at
+                    break
+            if last_number.minute + 5 < datetime.datetime.now().minute:
+                await message.channel.send("it has been more than 5 minutes since the last count")
+        
     if message.author.id == 510016054391734273 and message.channel.id == 993517852558626916:
         o = bot.get_guild(guild)
         if "You have used **1** of your saves. You have **0" in message.content or "You have used **1** guild save! There are **0" in message.content:
