@@ -3,6 +3,7 @@ from discord.ext import commands
 import datetime
 import os
 import time
+import asyncio
 import math
 token = os.environ["token"]
 guild = 635976654111506446
@@ -34,7 +35,11 @@ async def on_message(message):
             if count.isnumeric():
                 last_number = message.created_at
                 break
-        if last_number.minute + 2 < datetime.datetime.now().minute:
+        if last_number.minute == datetime.datetime.now().minute:
+            await channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=False)
+            await asyncio.sleep(600) 
+            await channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=True)
+        if last_number.minute + 10 < datetime.datetime.now().minute:
             lock_time = datetime.datetime.now().minute
             await message.channel.edit(name=f"count-{lock_time}")
         
