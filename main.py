@@ -65,7 +65,7 @@ async def startrun(ctx):
         o = bot.get_guild(635976654111506446)
         timex = (datetime.datetime.now()+timedelta(minutes=60)).timestamp()
         await ctx.send(f"Setting inside timer for <t:{int(timex)}:R>")
-        while True:
+        while x == True:
             if not x:
                 break
             await asyncio.sleep(30) 
