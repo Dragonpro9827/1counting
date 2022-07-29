@@ -76,6 +76,7 @@ async def startrun(ctx):
 @bot.command()
 async def cancel(ctx):
     global x
+    await ctx.send("Cancelled Run")
     x = 0
 
 @bot.command() 
