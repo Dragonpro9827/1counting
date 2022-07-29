@@ -29,7 +29,7 @@ async def on_message(message):
             if count[::-1] == count:
                 await message.add_reaction(emoji='↔️')
         count = bot.get_channel(993517852558626916).history(limit=500, before=datetime.datetime.now())
-        for message in count:
+        async for message in count:
             count = message.content.split(" ")[0]
             if count.isnumeric():
                 last_number = message.created_at
