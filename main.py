@@ -20,7 +20,7 @@ async def on_ready():
 
 @bot.listen()
 async def on_message(message):
-    if message.channel.id==993517852558626916:
+    if message.channel.id==993517852558626916 and message.author.id != 510016054391734273:
         channel = message.channel.id
         count = message.content.split(" ")[0]
         if count.isnumeric():
