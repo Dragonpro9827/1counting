@@ -66,13 +66,11 @@ async def startrun(ctx):
         timex = (datetime.datetime.now()+timedelta(minutes=60)).timestamp()
         await ctx.send(f"Setting inside timer for <t:{int(timex)}:R>")
         while x == True:
-            if not x:
-                break
-            await asyncio.sleep(30) 
+            await asyncio.sleep(3600) 
             await ctx.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=False)
             timex = (datetime.datetime.now()+timedelta(minutes=10)).timestamp()
             await ctx.send(f"Sleepy Period Until <t:{int(timex)}:R>")
-            await asyncio.sleep(30) 
+            await asyncio.sleep(600) 
             x = False
         await ctx.send("**Run over** please do `-startrun` to restart the timer")
         await ctx.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=True)
