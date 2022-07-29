@@ -37,7 +37,9 @@ async def on_message(message):
             if last_number.minute + 2 < datetime.datetime.now().minute:
                 await message.channel.send("it has been more than 5 minutes since the last count")
             else:
-                await message.channel.send("dif between counts"+  str(datetime.datetime.now().minute - last_number.minute))
+                print(last_number.minute)
+                print(last_number.minute + 5)
+                print(datetime.datetime.now().minute)
         
     if message.author.id == 510016054391734273 and message.channel.id == 993517852558626916:
         o = bot.get_guild(guild)
