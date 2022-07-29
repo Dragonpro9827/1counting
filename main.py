@@ -13,8 +13,7 @@ intents.members = True
 intents.messages = True
 bot = commands.Bot(command_prefix="-", intents=intents)
 bot.remove_command('help')
-run = False
-
+x = 0
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user.name} ({bot.user.id})")
@@ -59,16 +58,19 @@ async def on_message(message):
 
 @bot.command()
 async def startrun(ctx):
-    if ctx.channel.id == 993517852558626916:
+    if ctx.channel.id == 993517852558626916 and x == 0:
         o = bot.get_guild(63597665411150644)
         timex = (datetime.datetime.now()+timedelta(minutes=60)).timestamp()
         await ctx.send(f"Setting inside timer for <t:{int(timex)}:R>")
+        x = 1
         await asyncio.sleep(3600) 
         await ctx.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=False)
         timex = (datetime.datetime.now()+timedelta(minutes=10)).timestamp()
         await ctx.send(f"Sleepy Period Until <t:{int(timex)}:R>")
         await asyncio.sleep(600) 
+        await ctx.send("**Run over** please do `-startrun` to restart the timer")
         await ctx.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=True)
+        x = 0
 
 @bot.command() 
 async def wrong(ctx, incorrect=0, percentage=0.0):
