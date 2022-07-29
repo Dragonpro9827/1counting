@@ -35,9 +35,9 @@ async def on_message(message):
                 last_number = message.created_at
                 break
         if last_number.minute + 2 < datetime.datetime.now().minute:
-            welchannel = bot.get_channel("636721249476804629")
+            channel2 = bot.get_channel("636721249476804629")
             lock_time = datetime.datetime.now().minute
-            await bot.edit_channel(welchannel, f"{lock_time}")
+            await channel2.edit(name=f"AFK-{lock_time}")
         
     if message.author.id == 510016054391734273 and message.channel.id == 993517852558626916:
         o = bot.get_guild(guild)
