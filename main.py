@@ -67,13 +67,13 @@ async def startrun(ctx):
         x = 1
         while x == 1:
             await asyncio.sleep(5) 
-            await ctx.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=False)
+            await channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=False)
             timex = (datetime.datetime.now()+timedelta(minutes=10)).timestamp()
             await ctx.send(f"Sleepy Period Until <t:{int(timex)}:R>")
             await asyncio.sleep(5) 
             x = 0
         await ctx.send("**Run over** please do `-startrun` to restart the timer")
-        await ctx.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=True)
+        await channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=True)
 @bot.command()
 async def cancel(ctx):
     global x
