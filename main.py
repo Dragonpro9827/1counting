@@ -4,6 +4,7 @@ import datetime
 import os
 import time
 import asyncio
+from datetime import timedelta
 import math
 token = os.environ["token"]
 guild = 635976654111506446
@@ -12,7 +13,7 @@ intents.members = True
 intents.messages = True
 bot = commands.Bot(command_prefix="-", intents=intents)
 bot.remove_command('help')
-
+run = False
 
 @bot.event
 async def on_ready():
@@ -29,23 +30,6 @@ async def on_message(message):
                 await message.add_reaction(emoji='💯')
             if count[::-1] == count:
                 await message.add_reaction(emoji='↔️')
-        count = bot.get_channel(993517852558626916).history(limit=500, before=datetime.datetime.now())
-        async for message in count:
-            count = message.content.split(" ")[0]
-            if count.isnumeric():
-                last_number = message.created_at
-                break
-        if last_number.minute + 1 < datetime.datetime.now().minute:
-            lock_time = datetime.datetime.now().minute
-            await message.channel.edit(name=f"count-{lock_time}")
-        elif last_number.minute == datetime.datetime.now().minute:
-            await message.channel.send(last_number.minute)
-            await message.channel.send(datetime.datetime.now().minute)
-            o = bot.get_guild(635976654111506446)
-            await message.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=False)
-            await asyncio.sleep(600) 
-            await message.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=True)
-        
     if message.author.id == 510016054391734273 and message.channel.id == 993517852558626916:
         o = bot.get_guild(guild)
         if "You have used **1** of your saves. You have **0" in message.content or "You have used **1** guild save! There are **0" in message.content:
@@ -72,6 +56,20 @@ async def on_message(message):
         except Exception as e:
             print(e)
             pass
+
+@bot.command()
+async def startrun(ctx):
+    if ctx.channel.id == 993517852558626916:
+        o = bot.get_guild(63597665411150644)
+        timex = (datetime.datetime.now()+timedelta(minutes=60)).timestamp()
+        await ctx.send(f"Setting inside timer for <t:{int(timex)}:R>")
+        await asyncio.sleep(3600) 
+        await ctx.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=False)
+        timex = (datetime.datetime.now()+timedelta(minutes=10)).timestamp()
+        await ctx.send(f"Sleepy Period Until <t:{int(timex)}:R>")
+        await asyncio.sleep(600) 
+        await ctx.channel.set_permissions(discord.utils.get(o.roles,name="Certified Pro Gamer"), send_messages=True)
+
 @bot.command() 
 async def wrong(ctx, incorrect=0, percentage=0.0):
   perc=round(percentage,3)
