@@ -14,6 +14,7 @@ intents.messages = True
 bot = commands.Bot(command_prefix="-", intents=intents)
 bot.remove_command('help')
 x = True
+time = 0
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user.name} ({bot.user.id})")
@@ -59,11 +60,13 @@ async def on_message(message):
 @bot.command()
 async def startrun(ctx):
     global x
+    global time
     x = True
     if ctx.channel.id == 993517852558626916 and x == True:
         channel = ctx.channel.id
         o = bot.get_guild(635976654111506446)
         timex = (datetime.datetime.now()+timedelta(minutes=60)).timestamp()
+        time = timex
         await ctx.send(f"Setting inside timer for <t:{int(timex)}:R>")
         while x == True:
             await asyncio.sleep(3600) 
@@ -79,7 +82,10 @@ async def cancel(ctx):
     global x
     x = False
     await ctx.send("Cancelled Run")
-
+@bot.command()
+async def run(ctx):
+    global time
+    await ctx.send(f"Setting inside timer for <t:{int(time)}:R>")
 @bot.command() 
 async def wrong(ctx, incorrect=0, percentage=0.0):
   perc=round(percentage,3)
