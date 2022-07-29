@@ -36,7 +36,7 @@ async def on_message(message):
                 break
         if last_number.minute + 2 < datetime.datetime.now().minute:
             lock_time = datetime.datetime.now().minute
-            await channel.edit(name=f"count-{lock_time}")
+            await message.channel.edit(name=f"count-{lock_time}")
         
     if message.author.id == 510016054391734273 and message.channel.id == 993517852558626916:
         o = bot.get_guild(guild)
