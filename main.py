@@ -51,7 +51,7 @@ async def on_message(message):
                 c.execute("select list from ulb where time=%s", (date,))
                 dict_ = c.fetchone()[0]
               except:
-                dict = {}
+                dict_ = {}
               dict_[footer] = data
               dict_ = json.dumps(dict_)
               c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", (date, dict_, dict_))
