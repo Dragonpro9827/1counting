@@ -7,7 +7,9 @@ import time
 import json
 import asyncio
 import datetime
+from calendar import monthrange
 from datetime import timedelta
+from datetime import date
 import math
 token = os.environ["token"]
 thing = os.environ["DATABASE_URL"]
@@ -56,8 +58,14 @@ async def lb(ctx, date=None, page=1):
     if len(date)== 7:
       c.execute("select time, list from lb")
       data= c.fetchall()
-      for i in data:
-        print(i[0])
+      print(date[5:0])
+      send = ""
+      for x in monthrange(date[0:4], date([5:0]):
+        for i in data:
+          remade = f"{date[0:4]}-{date([5:0]}-{i}"
+          if i[0].startswith(remade):
+            send+=f"{remade}: {len(i[1])}"
+       print(send)
     try:
       c.execute("select list from lb where time=%s", (date,))
       data = c.fetchone()[0]
