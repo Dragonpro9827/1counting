@@ -13,8 +13,10 @@ token = os.environ["token"]
 thing = os.environ["DATABASE_URL"]
 database=psycopg2.connect(thing,sslmode='require')
 c=database.cursor()
+c.execute("drop table ulb")
+database.commit()
 c.execute('''CREATE TABLE IF NOT EXISTS ulb
-             (time text primary key,
+             (time VARCHAR primary key,
              list json)''')
 database.commit()
 guild = 635976654111506446
@@ -48,8 +50,7 @@ async def on_message(message):
             date2 = (str(message.created_at)[0:10])
             if "TOP USER" in (message.embeds[0].title):
               try:
-                print(date2)
-                c.execute("select list from ulb where time=%s", (("'"+ date2 +"'"),))
+                c.execute("select list from ulb where time=%s", (date2,))
                 dict_ = c.fetchone()[0]
               except:
                 dict_ = {}
