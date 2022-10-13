@@ -12,9 +12,10 @@ token = os.environ["token"]
 thing = os.environ["DATABASE_URL"]
 database=psycopg2.connect(thing,sslmode='require')
 c=database.cursor()
+c.execute("drop ulb")
+database.commit()
 c.execute('''CREATE TABLE IF NOT EXISTS ulb
              (time TIMESTAMP,
-             page BIGint,
              list json,
              primary key(time, page))''')
 database.commit()
@@ -28,22 +29,36 @@ time = 0
 async def on_ready():
     print(f"Logged in as {bot.user.name} ({bot.user.id})")
 
-
+@bot.command()
+async def ulb(ctx, time=None, page=1):
+    c.execute("select time, list from ulb")
+    all = c.fetchall()
+    channel = ctx.channel.id
+     await message.channel.send(all)
 @bot.listen()
 async def on_message(message):
     channel = message.channel.id
-    if message.author.id == 510016054391734273:
-        if "HIGH SCORE" in (message.embeds[0].title) or "TOP USER" in (message.embeds[0].title):
-          data, new_data = (message.embeds[0].description).split("\n"), []
-          footer =  (message.embeds[0].footer.text).replace("c!help | Page ", "")
-          print(footer)
-          for i in data:
-              new_data.append(i.split("**"))
-          b = [[i for i in item if i != ''] for item in new_data]
-          c = [item for item in b if item != []]
-          print(c)
-          date = str(message.created_at)[0:10]
-          print(date)
+    try:
+      if message.author.id == 510016054391734273:
+          if "HIGH SCORE" in (message.embeds[0].title) or "TOP USER" in (message.embeds[0].title):
+            data, new_data = (message.embeds[0].description).split("\n"), []
+            footer =  (message.embeds[0].footer.text).replace("c!help | Page ", "")
+            for i in data:
+                new_data.append(i.split("**"))
+            b = [[i for i in item if i != ''] for item in new_data]
+            data = [item for item in b if item != []]
+            date = str(message.created_at)[0:10]
+            if "TOP USER" in (message.embeds[0].title):
+              try:
+                c.execute("select list from ulb where time=%s", (date,))
+                dict = c.fetchone()[0]
+              except:
+                dict = {}
+              dict[page] = c
+              c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", (date, dict, dict))
+              database.commit()
+    except:
+      pass
     if message.channel.id==993517852558626916 and message.author.id != 1002517551764488223:
         channel = message.channel.id
         count = message.content.split(" ")[0]
