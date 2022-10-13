@@ -34,7 +34,7 @@ async def on_message(message):
     channel = message.channel.id
     if message.author.id == 510016054391734273:
         data, new_data = (message.embeds[0].description).split("\n"), []
-        footer =  message.embeds[0].footer
+        footer =  message.embeds[0].footer.text
         print(footer)
         for i in data:
             new_data.append(i.split("**"))
