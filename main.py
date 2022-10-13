@@ -42,7 +42,7 @@ async def ulb(ctx, date=None, page=1):
     except:
       await ctx.channel.send("Page data wasnt collected :(")
       return
-     await ctx.channel.send(f"{data}")
+    await ctx.channel.send(f"{data}")
 @bot.listen()
 async def on_message(message):
     channel = message.channel.id
