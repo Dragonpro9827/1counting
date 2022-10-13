@@ -4,6 +4,7 @@ import datetime
 import psycopg2
 import os
 import time
+import json
 import asyncio
 import datetime
 from datetime import timedelta
@@ -53,7 +54,7 @@ async def on_message(message):
               except:
                 dict = {}
               dict[footer] = data
-              print(data)
+              dict = json.dumps(dict)
               c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", (date, dict, dict))
               database.commit()
     except Exception as e:
