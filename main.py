@@ -53,6 +53,11 @@ async def ulb(ctx, date=None, page=1):
 @bot.command()
 async def lb(ctx, date=None, page=1):
     channel = ctx.channel.id
+    if len(date)== 7:
+      c.execute("select time, list from lb")
+      data= c.fetchall()
+      for i in data:
+        print(i[0])
     try:
       c.execute("select list from lb where time=%s", (date,))
       data = c.fetchone()[0]
