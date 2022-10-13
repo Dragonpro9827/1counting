@@ -54,7 +54,7 @@ async def ulb(ctx, date=None, page=1):
 async def lb(ctx, date=None, page=1):
     channel = ctx.channel.id
     try:
-      c.execute("select list from ulb where time=%s", (date,))
+      c.execute("select list from lb where time=%s", (date,))
       data = c.fetchone()[0]
     except:
       await ctx.channel.send("Data in this time period wasn't collected :(")
@@ -64,7 +64,7 @@ async def lb(ctx, date=None, page=1):
       send = ""
       for i in data:
         send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
-      embed=discord.Embed(title=f"*TOP USERS* in {date}", description=send, color=0xA020F0)
+      embed=discord.Embed(title=f"*HIGH SCORES* in {date}", description=send, color=0xA020F0)
       await ctx.channel.send(embed=embed)
     except:
       await ctx.channel.send("Page data wasnt collected :(")
