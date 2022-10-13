@@ -32,14 +32,15 @@ async def on_ready():
 async def on_message(message):
     channel = message.channel.id
     if message.author.id == 510016054391734273:
-        data = message.embeds[0].description
-        data = data.split("\n")
-        new_data = []
+        data, new_data = (message.embeds[0].description).split("\n"), []
+        footer =  message.embeds[0].footer
+        print(footer)
         for i in data:
             new_data.append(i.split("**"))
         b = [[i for i in item if i != ''] for item in new_data]
         c = [item for item in b if item != []]
-        print(c[0][1])
+        print(c)
+        print(message.created_at[0:7])
     if message.channel.id==993517852558626916 and message.author.id != 1002517551764488223:
         channel = message.channel.id
         count = message.content.split(" ")[0]
