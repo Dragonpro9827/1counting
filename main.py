@@ -13,8 +13,7 @@ token = os.environ["token"]
 thing = os.environ["DATABASE_URL"]
 database=psycopg2.connect(thing,sslmode='require')
 c=database.cursor()
-c.execute("DROP TABLE ULB")
-database.commit()
+
 c.execute('''CREATE TABLE IF NOT EXISTS ulb
              (time json,
              list json)''')
