@@ -7,7 +7,7 @@ import time
 import json
 import asyncio
 import datetime
-from calendar import monthrange
+import calendar
 from datetime import timedelta
 from datetime import date
 import math
@@ -65,6 +65,8 @@ async def lb(ctx, date=None, page=1):
           remade = f"{date[0:4]}-{date[5:0]}-{i}"
           if i[0].startswith(remade):
             send+=f"{remade}: {len(i[1])}"
+      embed=discord.Embed(title=f"Amount of pages in {date}", description=send, color=0x301934)
+      await ctx.channel.send(embed=embed)
     try:
       c.execute("select list from lb where time=%s", (date,))
       data = c.fetchone()[0]
