@@ -16,6 +16,9 @@ c=database.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS ulb
              (time DATE primary key,
              list json)''')
+c.execute('''CREATE TABLE IF NOT EXISTS lb
+             (time DATE primary key,
+             list json)''')
 database.commit()
 guild = 635976654111506446
 intents = discord.Intents.all()
@@ -46,6 +49,27 @@ async def ulb(ctx, date=None, page=1):
     except:
       await ctx.channel.send("Page data wasnt collected :(")
       return
+
+@bot.command()
+async def lb(ctx, date=None, page=1):
+    channel = ctx.channel.id
+    try:
+      c.execute("select list from ulb where time=%s", (date,))
+      data = c.fetchone()[0]
+    except:
+      await ctx.channel.send("Data in this time period wasn't collected :(")
+      return
+    try:
+      data = data[str(page)]
+      send = ""
+      for i in data:
+        send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
+      embed=discord.Embed(title=f"*TOP USERS* in {date}", description=send, color=0xA020F0)
+      await ctx.channel.send(embed=embed)
+    except:
+      await ctx.channel.send("Page data wasnt collected :(")
+      return
+  
 @bot.listen()
 async def on_message(message):
     channel = message.channel.id
@@ -69,6 +93,17 @@ async def on_message(message):
               dict_ = json.dumps(dict_)
               date2 = json.dumps(date2)
               c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", (date2, dict_, dict_))
+              database.commit()
+           if "HIGH SCORE" in (message.embeds[0].title):
+              try:
+                c.execute("select list from lb where time=%s", (date2,))
+                dict_ = c.fetchone()[0]
+              except:
+                dict_ = {}
+              dict_[footer] = data
+              dict_ = json.dumps(dict_)
+              date2 = json.dumps(date2)
+              c.execute("insert into lb (time, list) values (%s, %s) on conflict (time) do update set list=%s", (date2, dict_, dict_))
               database.commit()
     except Exception as e:
       print(e)
