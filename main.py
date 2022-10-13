@@ -16,7 +16,7 @@ c=database.cursor()
 c.execute("DROP TABLE ULB")
 database.commit()
 c.execute('''CREATE TABLE IF NOT EXISTS ulb
-             (time TIMESTAMP PRIMARY KEY,
+             (time json PRIMARY KEY,
              list json)''')
 database.commit()
 guild = 635976654111506446
@@ -47,7 +47,7 @@ async def on_message(message):
                 new_data.append(i.split("**"))
             b = [[i for i in item if i != ''] for item in new_data]
             data = [item for item in b if item != []]
-            date2 = str(message.created_at)[0:10]
+            date2 = (str(message.created_at)[0:10])
             if "TOP USER" in (message.embeds[0].title):
               try:
                 c.execute("select list from ulb where time=%s", (date,))
@@ -56,6 +56,7 @@ async def on_message(message):
                 dict_ = {}
               dict_[footer] = data
               dict_ = json.dumps(dict_)
+              date2 = json.dumps(date2)
               c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", (date2, dict_, dict_))
               database.commit()
     except Exception as e:
