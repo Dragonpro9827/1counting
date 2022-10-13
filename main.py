@@ -16,7 +16,7 @@ c=database.cursor()
 c.execute("drop table ulb")
 database.commit()
 c.execute('''CREATE TABLE IF NOT EXISTS ulb
-             (time VARCHAR primary key,
+             (time DATETIME primary key,
              list json)''')
 database.commit()
 guild = 635976654111506446
