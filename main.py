@@ -41,7 +41,7 @@ async def ulb(ctx, date=None, page=1):
       send = ""
       for i in data:
         send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
-      embed=discord.Embed(title=f"*TOP USERS* in {date}", description=send, color=0x2e3136)
+      embed=discord.Embed(title=f"*TOP USERS* in {date}", description=send, color=0xA020F0)
       await ctx.channel.send(embed=embed)
     except:
       await ctx.channel.send("Page data wasnt collected :(")
