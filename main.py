@@ -16,7 +16,7 @@ c=database.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS ulb
              (time TIMESTAMP,
              list json,
-             primary key(time, page))''')
+             primary key(time))''')
 database.commit()
 guild = 635976654111506446
 intents = discord.Intents.all()
@@ -50,12 +50,12 @@ async def on_message(message):
             if "TOP USER" in (message.embeds[0].title):
               try:
                 c.execute("select list from ulb where time=%s", (date,))
-                dict = c.fetchone()[0]
+                dict_ = c.fetchone()[0]
               except:
                 dict = {}
-              dict[footer] = data
-              dict = json.dumps(dict)
-              c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", (date, dict, dict))
+              dict_[footer] = data
+              dict_ = json.dumps(dict_)
+              c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", (date, dict_, dict_))
               database.commit()
     except Exception as e:
       print(e)
