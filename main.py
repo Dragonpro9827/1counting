@@ -48,15 +48,12 @@ async def on_message(message):
             date2 = (str(message.created_at)[0:10])
             if "TOP USER" in (message.embeds[0].title):
               try:
-                c.execute("select list from ulb where time=%s", (date2,))
+                print(date2)
+                c.execute("select list from ulb where time=%s", (("'"+ date2 +"'"),))
                 dict_ = c.fetchone()[0]
-                new = {footer: data}
-                print(new)
-                print(dict_)
-                dict_ += new
               except:
                 dict_ = {}
-                dict_[footer] = data
+              dict_[footer] = data
               dict_ = json.dumps(dict_)
               date2 = json.dumps(date2)
               c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", (date2, dict_, dict_))
