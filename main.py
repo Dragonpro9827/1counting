@@ -30,19 +30,18 @@ async def on_ready():
 @bot.command()
 async def ulb(ctx, date=None, page=1):
     channel = ctx.channel.id
-    print(date)
     try:
       c.execute("select list from ulb where time=%s", (date,))
       data = c.fetchone()[0]
     except:
       await ctx.channel.send("Data in this time period wasn't collected :(")
       return
-    print(data)
     try:
-      print(data)
       data = data[str(page)]
-      await ctx.channel.send(f"{data}")
-      print(data)
+      send = ""
+      for i in data:
+        send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
+      await ctx.channel.send(f"{send}")
     except:
       await ctx.channel.send("Page data wasnt collected :(")
       return
