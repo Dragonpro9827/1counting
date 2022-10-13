@@ -48,7 +48,7 @@ async def on_message(message):
             date2 = (str(message.created_at)[0:10])
             if "TOP USER" in (message.embeds[0].title):
               try:
-                c.execute("select list from ulb where time=%s", (date,))
+                c.execute("select list from ulb where time=%s", (date2,))
                 dict_ = c.fetchone()[0]
                 new = {footer: data}
                 print(new)
