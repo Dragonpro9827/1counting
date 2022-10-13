@@ -63,7 +63,7 @@ async def lb(ctx, date=None, page=1):
       for x in range(0, days):
         for i in data:
           remade = f"{date[0:4]}-{date[5:7]}-{x}"
-          if str(i[0]).startswith(remade):
+          if str(i[0]) == (remade):
             send+=f"{remade}: {len(i[1])}\n"
       embed=discord.Embed(title=f"Amount of pages in {date}", description=send, color=0x301934)
       await ctx.channel.send(embed=embed)
