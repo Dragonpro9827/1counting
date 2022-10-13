@@ -57,7 +57,8 @@ async def on_message(message):
               print(time)
               c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", (date, dict, dict))
               database.commit()
-    except:
+    except Exception as e:
+      print(e)
       pass
     if message.channel.id==993517852558626916 and message.author.id != 1002517551764488223:
         channel = message.channel.id
