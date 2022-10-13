@@ -66,7 +66,7 @@ async def lb(ctx, date=None, page=1):
       send = ""
       for x in range(0, number_of_days_in_month(date[0:4], date[5:0])):
         for i in data:
-          remade = f"{date[0:4]}-{date([5:0]}-{i}"
+          remade = f"{date[0:4]}-{date[5:0]}-{i}"
           if i[0].startswith(remade):
             send+=f"{remade}: {len(i[1])}"
        print(send)
