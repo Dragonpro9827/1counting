@@ -33,16 +33,17 @@ async def on_ready():
 async def on_message(message):
     channel = message.channel.id
     if message.author.id == 510016054391734273:
-        data, new_data = (message.embeds[0].description).split("\n"), []
-        footer =  message.embeds[0].footer.text
-        print(footer)
-        for i in data:
-            new_data.append(i.split("**"))
-        b = [[i for i in item if i != ''] for item in new_data]
-        c = [item for item in b if item != []]
-        print(c)
-        date = str(message.created_at)[0:10]
-        print(date)
+        if "HIGH SCORE" in (message.embeds[0].title) or "TOP USER" in (message.embeds[0].title):
+          data, new_data = (message.embeds[0].description).split("\n"), []
+          footer =  (message.embeds[0].footer.text).replace("c!help | Page ", "")
+          print(footer)
+          for i in data:
+              new_data.append(i.split("**"))
+          b = [[i for i in item if i != ''] for item in new_data]
+          c = [item for item in b if item != []]
+          print(c)
+          date = str(message.created_at)[0:10]
+          print(date)
     if message.channel.id==993517852558626916 and message.author.id != 1002517551764488223:
         channel = message.channel.id
         count = message.content.split(" ")[0]
