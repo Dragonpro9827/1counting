@@ -18,9 +18,7 @@ c.execute('''CREATE TABLE IF NOT EXISTS ulb
              primary key(time, page))''')
 database.commit()
 guild = 635976654111506446
-intents = discord.Intents.default()
-intents.members = True
-intents.messages = True
+intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="-", intents=intents)
 bot.remove_command('help')
 x = True
