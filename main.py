@@ -16,7 +16,7 @@ c=database.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS ulb
              (time TIMESTAMP UNIQUE,
              list json,
-             primary key(time, list))''')
+             primary key(time))''')
 database.commit()
 guild = 635976654111506446
 intents = discord.Intents.all()
