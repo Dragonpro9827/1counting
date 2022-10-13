@@ -35,8 +35,6 @@ async def on_message(message):
     channel = message.channel.id
     if message.author.id == 510016054391734273:
         data = message.embeds[0].description
-        footer = message.embeds[0].footer
-        print(footer)
         data = data.split("\n")
         new_data = []
         for i in data:
