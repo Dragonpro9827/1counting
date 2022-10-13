@@ -15,7 +15,8 @@ database=psycopg2.connect(thing,sslmode='require')
 c=database.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS ulb
              (time TIMESTAMP UNIQUE,
-             list json)''')
+             list json UNIQUE,
+             primary key(time, list))''')
 database.commit()
 guild = 635976654111506446
 intents = discord.Intents.all()
