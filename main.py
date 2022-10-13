@@ -35,6 +35,20 @@ async def on_ready():
 @bot.command()
 async def ulb(ctx, date=None, page=1):
     channel = ctx.channel.id
+    if len(date)== 7:
+      c.execute("select time, list from ulb")
+      data= c.fetchall()
+      print(date[5:0])
+      send = ""
+      days = calendar.monthrange(int(date[0:4]), int(date[5:7]))[1]
+      for x in range(0, days):
+        for i in data:
+          remade = f"{date[0:4]}-{date[5:7]}-{x}"
+          if str(i[0]) == (remade):
+            send+=f"{remade}: {len(i[1])}\n"
+      embed=discord.Embed(title=f"Amount of pages in {date}", description=send, color=0x301934)
+      await ctx.channel.send(embed=embed)
+      return
     try:
       c.execute("select list from ulb where time=%s", (date,))
       data = c.fetchone()[0]
