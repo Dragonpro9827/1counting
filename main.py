@@ -53,6 +53,7 @@ async def on_message(message):
               except:
                 dict = {}
               dict[footer] = data
+              print(data)
               c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", (date, dict, dict))
               database.commit()
     except Exception as e:
