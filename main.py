@@ -30,6 +30,7 @@ async def on_ready():
 @bot.command()
 async def ulb(ctx, date=None, page=1):
     channel = ctx.channel.id
+    print(date)
     try:
       c.execute("select list from ulb where time=%s", (date,))
       data = c.fetchone()[0]
