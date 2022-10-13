@@ -94,7 +94,7 @@ async def on_message(message):
               date2 = json.dumps(date2)
               c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", (date2, dict_, dict_))
               database.commit()
-           if "HIGH SCORE" in (message.embeds[0].title):
+            if "HIGH SCORE" in (message.embeds[0].title):
               try:
                 c.execute("select list from lb where time=%s", (date2,))
                 dict_ = c.fetchone()[0]
