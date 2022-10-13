@@ -39,7 +39,6 @@ async def ulb(ctx, date=None, page=1):
     try:
       data = data[page]
       await ctx.channel.send(f"{data}")
-      print(data)
     except:
       await ctx.channel.send("Page data wasnt collected :(")
       return
