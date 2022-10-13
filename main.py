@@ -51,11 +51,6 @@ async def ulb(ctx, date=None, page=1):
     except:
       await ctx.channel.send("Page data wasnt collected :(")
       return
-from calendar import monthrange
-def number_of_days_in_month(year=2019, month=2):
-    return monthrange(int(year), int(month))[1]
-    
-    
 @bot.command()
 async def lb(ctx, date=None, page=1):
     channel = ctx.channel.id
@@ -64,7 +59,8 @@ async def lb(ctx, date=None, page=1):
       data= c.fetchall()
       print(date[5:0])
       send = ""
-      for x in range(0, datetime.DaysInMonth(int(date[0:4]), int(date[5:0]))):
+      days = calendar.monthrange(int(date[0:4]), int(date[5:0]))[1]
+      for x in range(0, days):
         for i in data:
           remade = f"{date[0:4]}-{date[5:0]}-{i}"
           if i[0].startswith(remade):
