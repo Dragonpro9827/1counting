@@ -7,6 +7,15 @@ import asyncio
 from datetime import timedelta
 import math
 token = os.environ["token"]
+thing = os.environ["DATABASE_URL"]
+database=psycopg2.connect(thing,sslmode='require')
+c=database.cursor()
+c.execute('''CREATE TABLE IF NOT EXISTS ulb
+             (time TIMESTAMP,
+             page BIGint,
+             list json,
+             primary key(time, page))''')
+database.commit()
 guild = 635976654111506446
 intents = discord.Intents.default()
 intents.members = True
@@ -25,6 +34,8 @@ async def on_message(message):
     channel = message.channel.id
     if message.author.id == 510016054391734273:
         data = message.embeds[0].description
+        footer = message.embeds[0].footer
+        print(footer)
         data = data.split("\n")
         new_data = []
         for i in data:
