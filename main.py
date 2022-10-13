@@ -60,6 +60,7 @@ async def lb(ctx, date=None, page=1):
       print(date[5:0])
       send = ""
       days = calendar.monthrange(int(date[0:4]), int(date[5:7]))[1]
+      print(days)
       for x in range(0, days):
         for i in data:
           remade = f"{date[0:4]}-{date[5:0]}-{i}"
