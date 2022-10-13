@@ -29,7 +29,7 @@ async def on_message(message):
         new_data = []
         for i in data:
             new_data.append(i.split("**"))
-        new_data = filter(None, new_data)
+        new_data = [i for i in new_data if i]
         print(new_data)
     if message.channel.id==993517852558626916 and message.author.id != 1002517551764488223:
         channel = message.channel.id
