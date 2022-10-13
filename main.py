@@ -29,9 +29,11 @@ async def on_ready():
     print(f"Logged in as {bot.user.name} ({bot.user.id})")
 
 @bot.command()
-async def ulb(ctx, time=None, page=1):
-    c.execute("SELECT time, list FROM ulb")
-    all = c.fetchall()
+async def ulb(ctx, date=None, page=1):
+    c.execute("select list from ulb where time=%s", (date,))
+    data = c.fetchone()[0]
+    for i in data:
+      print(i)
     channel = ctx.channel.id
     await ctx.channel.send(all)
 @bot.listen()
