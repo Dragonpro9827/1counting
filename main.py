@@ -26,10 +26,10 @@ async def on_message(message):
     if message.author.id == 510016054391734273:
         data = message.embeds[0].description
         data = data.split("\n")
-        print(data)
         new_data = []
         for i in data:
             new_data.append(i.split("**"))
+        new_data = filter(None, new_data)
         print(new_data)
     if message.channel.id==993517852558626916 and message.author.id != 1002517551764488223:
         channel = message.channel.id
