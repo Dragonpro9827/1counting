@@ -31,7 +31,7 @@ async def on_ready():
 
 @bot.command()
 async def ulb(ctx, time=None, page=1):
-    c.execute("SELECT list FROM ulb")
+    c.execute("SELECT time, list FROM ulb")
     all = c.fetchall()
     channel = ctx.channel.id
     await ctx.channel.send(all)
