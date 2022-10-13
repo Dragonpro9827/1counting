@@ -41,7 +41,7 @@ async def on_message(message):
         b = [[i for i in item if i != ''] for item in new_data]
         c = [item for item in b if item != []]
         print(c)
-        date = str(message.created_at)[0:7]
+        date = str(message.created_at)[0:10]
         print(date)
     if message.channel.id==993517852558626916 and message.author.id != 1002517551764488223:
         channel = message.channel.id
