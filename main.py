@@ -37,7 +37,7 @@ async def ulb(ctx, date=None, page=1):
       await ctx.channel.send("Data in this time period wasn't collected :(")
       return
     try:
-      data = data[page]
+      data = data[str(page)]
       await ctx.channel.send(f"{data}")
       print(data)
     except:
