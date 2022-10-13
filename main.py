@@ -24,7 +24,6 @@ async def on_ready():
 async def on_message(message):
     channel = message.channel.id
     if message.author.id == 510016054391734273:
-        print(len(message))
         await message.channel.send(f"{message.desc}")
     if message.channel.id==993517852558626916 and message.author.id != 1002517551764488223:
         channel = message.channel.id
