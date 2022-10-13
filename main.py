@@ -69,7 +69,7 @@ async def lb(ctx, date=None, page=1):
           remade = f"{date[0:4]}-{date[5:0]}-{i}"
           if i[0].startswith(remade):
             send+=f"{remade}: {len(i[1])}"
-       print(send)
+    print(send)
     try:
       c.execute("select list from lb where time=%s", (date,))
       data = c.fetchone()[0]
