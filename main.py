@@ -12,8 +12,6 @@ token = os.environ["token"]
 thing = os.environ["DATABASE_URL"]
 database=psycopg2.connect(thing,sslmode='require')
 c=database.cursor()
-c.execute("drop ulb")
-database.commit()
 c.execute('''CREATE TABLE IF NOT EXISTS ulb
              (time TIMESTAMP,
              list json,
@@ -34,7 +32,7 @@ async def ulb(ctx, time=None, page=1):
     c.execute("select time, list from ulb")
     all = c.fetchall()
     channel = ctx.channel.id
-     await message.channel.send(all)
+    await message.channel.send(all)
 @bot.listen()
 async def on_message(message):
     channel = message.channel.id
