@@ -64,7 +64,7 @@ async def lb(ctx, date=None, page=1):
       data= c.fetchall()
       print(date[5:0])
       send = ""
-      for x in range(0, DateTime.DaysInMonth(int(date[0:4]), int(date[5:0]))):
+      for x in range(0, datetime.DaysInMonth(int(date[0:4]), int(date[5:0]))):
         for i in data:
           remade = f"{date[0:4]}-{date[5:0]}-{i}"
           if i[0].startswith(remade):
