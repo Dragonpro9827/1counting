@@ -62,13 +62,12 @@ async def lb(ctx, date=None, page=1):
       days = calendar.monthrange(int(date[0:4]), int(date[5:7]))[1]
       for x in range(0, days):
         for i in data:
-          remade = f"{date[0:4]}-{date[5:0]}-{x}"
-          print(remade)
-          print(str(i[0]))
+          remade = f"{date[0:4]}-{date[5:7]}-{x}"
           if str(i[0]).startswith(remade):
             send+=f"{remade}: {len(i[1])}"
       embed=discord.Embed(title=f"Amount of pages in {date}", description=send, color=0x301934)
       await ctx.channel.send(embed=embed)
+      return
     try:
       c.execute("select list from lb where time=%s", (date,))
       data = c.fetchone()[0]
