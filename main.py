@@ -29,8 +29,9 @@ async def on_message(message):
         new_data = []
         for i in data:
             new_data.append(i.split("**"))
-        new_data = [i for i in new_data if i]
-        print(new_data)
+        b = [[i for i in item if i != ''] for item in new_data]
+        c = [item for item in b if item != []]
+        print(c)
     if message.channel.id==993517852558626916 and message.author.id != 1002517551764488223:
         channel = message.channel.id
         count = message.content.split(" ")[0]
