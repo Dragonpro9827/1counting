@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands,tasks
 import datetime
+import psycopg2
 import os
 import time
 import asyncio
