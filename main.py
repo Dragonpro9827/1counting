@@ -5,6 +5,7 @@ import psycopg2
 import os
 import time
 import asyncio
+import datetime
 from datetime import timedelta
 import math
 token = os.environ["token"]
@@ -40,7 +41,7 @@ async def on_message(message):
         b = [[i for i in item if i != ''] for item in new_data]
         c = [item for item in b if item != []]
         print(c)
-        print(message.created_at[0:7])
+        date = datetime.datetime.strptime(str(message.created_at), '%Y-%m-%d')
     if message.channel.id==993517852558626916 and message.author.id != 1002517551764488223:
         channel = message.channel.id
         count = message.content.split(" ")[0]
