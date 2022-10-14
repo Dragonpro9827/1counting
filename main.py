@@ -98,7 +98,7 @@ async def help(ctx):
   channel = ctx.channel.id
   await ctx.channel.send(embed=embed)
 @bot.command()
-async def ulb(ctx, date=None, page=1):
+async def ulb(ctx, page=1, date=None):
     channel = ctx.channel.id
     if date == None:
       today = datetime.datetime.now()
@@ -124,7 +124,7 @@ async def ulb(ctx, date=None, page=1):
       c.execute("select list from ulb where time=%s", (date,))
       data = c.fetchone()[0]
     except:
-      await ctx.channel.send("Data in this time period wasn't collected :(")
+      await ctx.channel.send("Data in this time period wasn't collected | `-ulb {page} {time}`")
       return
     try:
       c.execute("select list from ulb where time=%s", (yesterday,))
@@ -162,10 +162,10 @@ async def ulb(ctx, date=None, page=1):
       embed.set_footer(text="-help | May vary depending on time logged\n\n")
       await ctx.channel.send(embed=embed)
     except:
-      await ctx.channel.send("Page data wasnt collected :(")
+      await ctx.channel.send("Page data wasnt collected | `-ulb {page} {time}`")
       return
 @bot.command()
-async def lb(ctx, date=None, page=1):
+async def lb(ctx, page=1, time=None):
     channel = ctx.channel.id
     if date == None:
       today = datetime.datetime.now()
@@ -191,7 +191,7 @@ async def lb(ctx, date=None, page=1):
       c.execute("select list from lb where time=%s", (date,))
       data = c.fetchone()[0]
     except:
-      await ctx.channel.send("Data in this time period wasn't collected :(")
+      await ctx.channel.send("Data in this time period wasn't collected | `-lb {page} {time}`")
       return
     try:
       c.execute("select list from lb where time=%s", (yesterday,))
@@ -229,7 +229,7 @@ async def lb(ctx, date=None, page=1):
       embed.set_footer(text="-help | May vary depending on time logged\n\n")
       await ctx.channel.send(embed=embed)
     except:
-      await ctx.channel.send("Page data wasnt collected :(")
+      await ctx.channel.send("Page data wasnt collected | `-lb {page} {time}`")
       return
   
 @bot.listen()
