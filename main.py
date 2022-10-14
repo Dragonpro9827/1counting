@@ -114,7 +114,7 @@ async def ulb(ctx, page=1, date=None):
           remade = f"{date[0:4]}-{date[5:7]}-{x}"
           if str(i[0]) == (remade):
             send+=f"{remade}: {len(i[1])}\n"
-      embed=discord.Embed(title=f"Amount of pages in {date}", description=send, color=0x15C2BE)
+      embed=discord.Embed(title=f"Amount of pages in {date}", description=send, color=0x2B9678)
       embed.set_footer(text="-help | May vary depending on time logged\n\n")
       await ctx.channel.send(embed=embed)
       return
@@ -158,7 +158,7 @@ async def ulb(ctx, page=1, date=None):
         else:
           send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
         counter+=1
-      embed=discord.Embed(title=f"*TOP USERS* in {date}", description=send, color=0x15C2BE)
+      embed=discord.Embed(title=f"*TOP USERS* in {date}", description=send, color=0x2B9678)
       embed.set_footer(text="-help | May vary depending on time logged\n\n")
       await ctx.channel.send(embed=embed)
     except:
