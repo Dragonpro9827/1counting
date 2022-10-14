@@ -121,7 +121,7 @@ async def lb(ctx, date=None, page=1):
       await ctx.channel.send("Data in this time period wasn't collected :(")
       return
     try:
-      c.execute("select list from ulb where time=%s", (yesterday,))
+      c.execute("select list from lb where time=%s", (yesterday,))
       data_yest = c.fetchone()[0]
       data_yesterday = data_yest[str(page)]
       no=True
