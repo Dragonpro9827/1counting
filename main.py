@@ -36,7 +36,7 @@ async def on_ready():
 @bot.command()
 async def finduser(ctx, name="", date=None):
   channel = ctx.channel.id
-  if name == "a":
+  if name == "":
     return
   if date == None:
     today = datetime.datetime.now()
@@ -45,17 +45,17 @@ async def finduser(ctx, name="", date=None):
     return
   c.execute("select list from ulb where time=%s", (date,))
   data= c.fetchone()[0]
-  if "#" in name:
-    print("a")
   for x in data:
     for i in data[x]:
-      server = (i[1])[:-2]
+      server = (i[1])[1:-2]
       if "#" in name:
-        if server == name:
+        s = SequenceMatcher(None, (server), name)
+        if s.ratio() > 0.75:
           await ctx.channel.send(f"{(i[1])[:-1]} Score is {i[2]}, rank is {i[0]}")
           return
       else:
-        if server[:-5] == name:
+        s = SequenceMatcher(None, (server[:-5]), name)
+        if s.ratio() > 0.75:
           await ctx.channel.send(f"{(i[1])[:-1]} Score is {i[2]}, rank is {i[0]}")
           return
   await ctx.channel.send("Couldn't find the user you are looking for")
