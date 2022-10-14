@@ -34,12 +34,28 @@ async def on_ready():
     print(f"Logged in as {bot.user.name} ({bot.user.id})")
 
 @bot.command()
-async def find(ctx, name="a"):
-  print(name)
-  name = name.replace(" ","&")
-  print(name)
+async def finduser(ctx, name=""):
   channel = ctx.channel.id
-  eg = {"cho": "𝓣𝓱𝓮 𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓕𝓪𝓶𝓲𝓵𝔂™", "countaholics": "𝕮𝖔𝖚𝖓𝖙𝖆𝖍𝖔𝖑𝖎𝖈𝖘", "jake & oscar": "Jake & Oscar's Counting Paradise", "cu": "CU - Contadores Unidos", "ussr": "The USSR Ziggy Express"}
+  if name == "a":
+    return
+  today = datetime.datetime.now()
+  date = f"{today.year}-{today.month}-{today.day}"
+  c.execute("select list from ulb where time=%s", (date,))
+  data= c.fetchone()[0]
+  for x in data:
+    for i in data[x]:
+      server = (i[1])
+      s = SequenceMatcher(None, (server[1:-2]), name)
+      if s.ratio() > 0.75:
+        await ctx.channel.send(f"{(i[1])[:-1]} Score is {i[2]}, rank is {i[0]}")
+        return
+  await ctx.channel.send("Couldn't find the user you are looking for")
+    
+    
+@bot.command()
+async def find(ctx, name="a"):
+  channel = ctx.channel.id
+  eg = {"cho": "𝓣𝓱𝓮 𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓕𝓪𝓶𝓲𝓵𝔂™", "countaholics": "𝕮𝖔𝖚𝖓𝖙𝖆𝖍𝖔𝖑𝖎𝖈𝖘", "jake": "Jake & Oscar's Counting Paradise", "cu": "CU - Contadores Unidos", "ussr": "The USSR Ziggy Express"}
   if name == "a":
     return
   try:
@@ -58,6 +74,7 @@ async def find(ctx, name="a"):
         await ctx.channel.send(f"{(i[1])[:-1]} current count is {i[2]}, rank is {i[0]}")
         return
   await ctx.channel.send("Couldn't find the server you are looking for")
+  
 @bot.command()
 async def help(ctx):
   embed=discord.Embed(title=f"Need Help? Saul Goodman", description="Bot collects data from every server its in from the +1 commands sent", color=0x50C878)
