@@ -165,7 +165,7 @@ async def ulb(ctx, page=1, date=None):
       await ctx.channel.send("Page data wasnt collected | `-ulb {page} {time}`")
       return
 @bot.command()
-async def lb(ctx, page=1, time=None):
+async def lb(ctx, page=1, date=None):
     channel = ctx.channel.id
     if date == None:
       today = datetime.datetime.now()
