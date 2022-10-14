@@ -126,7 +126,7 @@ async def on_message(message):
     channel = message.channel.id
     try:
       if message.author.id == 510016054391734273:
-          if "HIGH SCORE" in (message.embeds[0].title) or "TOP USER" in (message.embeds[0].title):
+          if "HIGH SCORE" == (message.embeds[0].title) or "TOP USER" == (message.embeds[0].title):
             data, new_data = (message.embeds[0].description).split("\n"), []
             footer =  (message.embeds[0].footer.text).replace("c!help | Page ", "")
             for i in data:
@@ -134,7 +134,7 @@ async def on_message(message):
             b = [[i for i in item if i != ''] for item in new_data]
             data = [item for item in b if item != []]
             date2 = (str(message.created_at)[0:10])
-            if "TOP USER" in (message.embeds[0].title):
+            if "TOP USER" == (message.embeds[0].title):
               try:
                 c.execute("select list from ulb where time=%s", (date2,))
                 dict_ = c.fetchone()[0]
@@ -145,7 +145,7 @@ async def on_message(message):
               date2 = json.dumps(date2)
               c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", (date2, dict_, dict_))
               database.commit()
-            if "HIGH SCORE" in (message.embeds[0].title):
+            if "HIGH SCORE" == (message.embeds[0].title):
               try:
                 c.execute("select list from lb where time=%s", (date2,))
                 dict_ = c.fetchone()[0]
