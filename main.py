@@ -121,10 +121,37 @@ async def lb(ctx, date=None, page=1):
       await ctx.channel.send("Data in this time period wasn't collected :(")
       return
     try:
+      c.execute("select list from ulb where time=%s", (yesterday,))
+      data_yest = c.fetchone()[0]
+      data_yesterday = data_yest[str(page)]
+      no=True
+    except:
+      no=False
+      pass
+    try:
       data = data[str(page)]
       send = ""
+      counter = 0
       for i in data:
-        send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
+        if no == True:
+          if i[1] == (data_yesterday[counter])[1]:
+            today_count, yesterday_count = int((i[2]).replace(",", "")), int(((data_yesterday[counter])[2]).replace(",", ""))
+            send+=f"**{i[0]}** {i[1]} **{i[2]}** `[+{today_count-yesterday_count}]`\n"
+          else:
+            for key in data_yest:
+              for x in (data_yest[key]):
+                if x[1] == i[1]:
+                  today_count, yesterday_count = int((x[2]).replace(",", "")), int(((i)[2]).replace(",", ""))
+                  e = int(x[0].replace("#",""))-int(i[0].replace("#",""))
+                  if e < 0:
+                    e = f"↓{int(e*-1)}"
+                  else:
+                    e = f"↑{e}"
+                  send+=f"**{i[0]}** {i[1]} **{i[2]}** `[+{yesterday_count-today_count}] {e}`\n"
+                  break
+        else:
+          send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
+        counter+=1
       embed=discord.Embed(title=f"*HIGH SCORES* in {date}", description=send, color=0x301934)
       await ctx.channel.send(embed=embed)
     except:
