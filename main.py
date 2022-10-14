@@ -34,7 +34,7 @@ async def on_ready():
     print(f"Logged in as {bot.user.name} ({bot.user.id})")
 
 @bot.command()
-async def finduser(ctx, name=""):
+async def finduser(ctx, name="", date=None):
   channel = ctx.channel.id
   if name == "a":
     return
