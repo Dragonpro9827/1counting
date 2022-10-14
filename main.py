@@ -61,10 +61,26 @@ async def ulb(ctx, date=None, page=1):
       await ctx.channel.send("Data in this time period wasn't collected :(")
       return
     try:
+      c.execute("select list from ulb where time=%s", (yesterday,))
+      data_yesterday = c.fetchone()[0]
+      data_yesterday = data_yesterday[str(page)]
+      no=True
+    except:
+      no=False
+      pass
+    try:
       data = data[str(page)]
       send = ""
+      counter = 0
       for i in data:
+        if no == True:
+          if i[1] == (data_yesterday[counter])[1]:
+            today_count = (i[1]).replace(",", "")
+            yesterday_count = ((data_yesterday[counter])[1]).replace(",", "")
+            print(today_count)
+            print(yesterday_count)
         send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
+        counter+=1
       embed=discord.Embed(title=f"*TOP USERS* in {date}", description=send, color=0x301934)
       await ctx.channel.send(embed=embed)
     except:
