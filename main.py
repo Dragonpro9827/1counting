@@ -50,7 +50,7 @@ async def find(ctx, name=None):
   for x in data:
     for i in data[x]:
       server = (i[1])
-      if server[:-1] == name:
+      if str(server) == str(name):
         await ctx.channel.send(f"{(i[1])[:-1]} current count is {i[2]}, rank is {i[0]}")
         return
   await ctx.channel.send("Couldn't find the server you are looking for")
