@@ -176,7 +176,8 @@ async def on_message(message):
                 new_data.append(i.split("**"))
             b = [[i for i in item if i != ''] for item in new_data]
             data = [item for item in b if item != []]
-            if int((data[0][0]).replace("#","")) > 125:
+            u = int((data[0][0]).replace("#","").replace(",",""))
+            if u > 125:
               return
             date2 = (str(message.created_at)[0:10])
             if "*TOP USERS*" == (message.embeds[0].title):
