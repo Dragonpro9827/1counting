@@ -110,7 +110,7 @@ async def ulb(ctx, date=None, page=1):
           remade = f"{date[0:4]}-{date[5:7]}-{x}"
           if str(i[0]) == (remade):
             send+=f"{remade}: {len(i[1])}\n"
-      embed=discord.Embed(title=f"Amount of pages in {date}", description=send, color=0x301934)
+      embed=discord.Embed(title=f"Amount of pages in {date}", description=send, color=0x8c64d4)
       await ctx.channel.send(embed=embed)
       return
     try:
@@ -218,7 +218,7 @@ async def lb(ctx, date=None, page=1):
         else:
           send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
         counter+=1
-      embed=discord.Embed(title=f"*HIGH SCORES* in {date}", description=send, color=0x301934)
+      embed=discord.Embed(title=f"*HIGH SCORES* in {date}", description=send, color=0x8c64d4)
       await ctx.channel.send(embed=embed)
     except:
       await ctx.channel.send("Page data wasnt collected :(")
