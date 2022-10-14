@@ -24,7 +24,7 @@ c.execute('''CREATE TABLE IF NOT EXISTS lb
 database.commit()
 c.execute("select list from ulb where time=%s", ("2022-10-13",))
 a = c.fetchone()[0]
-print(a)
+print(a["1"])
 guild = 635976654111506446
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="-", intents=intents)
