@@ -44,7 +44,7 @@ async def find(ctx, name=None):
   today = datetime.datetime.now()
   date = f"{today.year}-{today.month}-{today.day}"
   c.execute("select list from ulb where time=%s", (date,))
-  data= c.fetchall()
+  data= c.fetchone()[0]
   for x in data:
     for i in data[x]:
       print(i)
