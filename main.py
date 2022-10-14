@@ -53,7 +53,7 @@ async def finduser(ctx, name=""):
     
     
 @bot.command()
-async def find(ctx, name="a"):
+async def find(ctx, name="a", date=None):
   channel = ctx.channel.id
   eg = {"cho": "𝓣𝓱𝓮 𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓕𝓪𝓶𝓲𝓵𝔂™", "countaholics": "𝕮𝖔𝖚𝖓𝖙𝖆𝖍𝖔𝖑𝖎𝖈𝖘", "jake": "Jake & Oscar's Counting Paradise", "cu": "CU - Contadores Unidos", "ussr": "The USSR Ziggy Express"}
   if name == "a":
@@ -62,8 +62,11 @@ async def find(ctx, name="a"):
     name = eg[name]
   except:
     pass
-  today = datetime.datetime.now()
-  date = f"{today.year}-{today.month}-{today.day}"
+  if date == None:
+    today = datetime.datetime.now()
+    date = f"{today.year}-{today.month}-{today.day}"
+  else if len(date) != 10:
+    return
   c.execute("select list from lb where time=%s", (date,))
   data= c.fetchone()[0]
   for x in data:
