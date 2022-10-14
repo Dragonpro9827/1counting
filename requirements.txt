@@ -1,2 +1,2 @@
-discord 
+discord==2.0.0
 psycopg2
