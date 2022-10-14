@@ -75,8 +75,8 @@ async def ulb(ctx, date=None, page=1):
       for i in data:
         if no == True:
           if i[1] == (data_yesterday[counter])[1]:
-            today_count = (i[1]).replace(",", "")
-            yesterday_count = ((data_yesterday[counter])[1]).replace(",", "")
+            today_count = (i[2]).replace(",", "")
+            yesterday_count = ((data_yesterday[counter])[2]).replace(",", "")
             print(today_count)
             print(yesterday_count)
         send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
