@@ -53,7 +53,7 @@ async def ulb(ctx, date=None, page=1):
       return
     try:
       today = datetime.datetime(int(date[0:4]), int(date[5:7]), int(date[8:10]))
-      yesterday = today - timedelta(days=1)
+      yesterday = str(today - timedelta(days=1))[0:11
       print(yesterday)
       c.execute("select list from ulb where time=%s", (date,))
       data = c.fetchone()[0]
