@@ -78,8 +78,8 @@ async def ulb(ctx, date=None, page=1):
             today_count, yesterday_count = int((i[2]).replace(",", "")), int(((data_yesterday[counter])[2]).replace(",", ""))
             send+=f"**{i[0]}** {i[1]} **{i[2]}** `[+{today_count-yesterday_count}]`\n"
           else:
-            for z in data_yest:
-              print(z[1])
+            send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
+            print(data_yest)
         else:
           send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
         counter+=1
