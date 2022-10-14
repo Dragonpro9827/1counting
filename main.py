@@ -51,7 +51,7 @@ async def find(ctx, name=None):
     for i in data[x]:
       server = (i[1])
       s = SequenceMatcher(None, (server[1:-2]), name)
-      if s.ratio() > 0.4:
+      if s.ratio() > 0.6:
         await ctx.channel.send(f"{(i[1])[:-1]} current count is {i[2]}, rank is {i[0]}")
         return
   await ctx.channel.send("Couldn't find the server you are looking for")
