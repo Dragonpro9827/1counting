@@ -80,7 +80,8 @@ async def ulb(ctx, date=None, page=1):
           else:
             send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
             for key in data_yest:
-              print(data_yest[key])
+              for x in (data_yest[key]):
+                print(x)
         else:
           send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
         counter+=1
