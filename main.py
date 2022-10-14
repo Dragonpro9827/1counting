@@ -34,6 +34,7 @@ async def on_ready():
 
 @bot.command()
 async def find(ctx, name=None):
+  channel = ctx.channel.id
   eg = {"cho": "𝓣𝓱𝓮 𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓕𝓪𝓶𝓲𝓵𝔂™", "countaholics": "𝕮𝖔𝖚𝖓𝖙𝖆𝖍𝖔𝖑𝖎𝖈𝖘", "jake & oscar": "Jake & Oscar's Counting Paradise", "cu": "CU - Contadores Unidos", "ussr": "The USSR Ziggy Express"}
   if name == None:
     return
@@ -43,11 +44,14 @@ async def find(ctx, name=None):
     pass
   today = datetime.datetime.now()
   date = f"{today.year}-{today.month}-{today.day}"
-  c.execute("select list from ulb where time=%s", (date,))
+  c.execute("select list from lb where time=%s", (date,))
   data= c.fetchone()[0]
   for x in data:
     for i in data[x]:
-      print(i)
+      if (i[1])[:-1] == name:
+        await ctx.channel.send(f"{(i[1])[:-1]} current count is {i[2]}, rank is {i[0]}")
+        return
+  await ctx.channel.send("Couldn't find the server you are looking for")
 @bot.command()
 async def help(ctx):
   embed=discord.Embed(title=f"Need Help? Saul Goodman", description="Bot collects data from every server its in from the +1 commands sent", color=0x50C878)
