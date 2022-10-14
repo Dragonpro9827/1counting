@@ -107,6 +107,9 @@ async def ulb(ctx, date=None, page=1):
 @bot.command()
 async def lb(ctx, date=None, page=1):
     channel = ctx.channel.id
+    if date == None:
+      today = datetime.datetime.now()
+      date = f"{today.year}-{today.month}-{today.day}"
     if len(date)== 7:
       c.execute("select time, list from lb")
       data= c.fetchall()
