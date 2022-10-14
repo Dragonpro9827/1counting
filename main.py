@@ -42,15 +42,15 @@ async def find(ctx, name=None):
     name = eg[name]
   except:
     pass
-  print(name)
   today = datetime.datetime.now()
   date = f"{today.year}-{today.month}-{today.day}"
   c.execute("select list from lb where time=%s", (date,))
   data= c.fetchone()[0]
   for x in data:
     for i in data[x]:
-      print((i[1])[:-1])
-      if (i[1])[:-1] == name:
+      server = (i[1])
+      print(server[:-1])
+      if server[:-1] == name:
         await ctx.channel.send(f"{(i[1])[:-1]} current count is {i[2]}, rank is {i[0]}")
         return
   await ctx.channel.send("Couldn't find the server you are looking for")
