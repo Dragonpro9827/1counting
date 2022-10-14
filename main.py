@@ -35,7 +35,9 @@ async def on_ready():
 
 @bot.command()
 async def find(ctx, name="a"):
+  print(name)
   name = name.replace(" ","&")
+  print(name)
   channel = ctx.channel.id
   eg = {"cho": "𝓣𝓱𝓮 𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓕𝓪𝓶𝓲𝓵𝔂™", "countaholics": "𝕮𝖔𝖚𝖓𝖙𝖆𝖍𝖔𝖑𝖎𝖈𝖘", "jake & oscar": "Jake & Oscar's Counting Paradise", "cu": "CU - Contadores Unidos", "ussr": "The USSR Ziggy Express"}
   if name == "a":
@@ -52,7 +54,6 @@ async def find(ctx, name="a"):
     for i in data[x]:
       server = (i[1])
       s = SequenceMatcher(None, (server[1:-2]), name)
-      print(f"{server[1:-2]} [{s.ratio()}] {name}")
       if s.ratio() > 0.75:
         await ctx.channel.send(f"{(i[1])[:-1]} current count is {i[2]}, rank is {i[0]}")
         return
