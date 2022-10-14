@@ -5,6 +5,7 @@ import psycopg2
 import os
 import time
 import json
+from difflib import SequenceMatcher
 import asyncio
 import datetime
 import calendar
@@ -49,7 +50,8 @@ async def find(ctx, name=None):
   for x in data:
     for i in data[x]:
       server = (i[1])
-      if str(server[1:-2]) == str(name):
+      s = SequenceMatcher(None, (server[1:-2]), name)
+      if s.ratio() > 0.4:
         await ctx.channel.send(f"{(i[1])[:-1]} current count is {i[2]}, rank is {i[0]}")
         return
   await ctx.channel.send("Couldn't find the server you are looking for")
