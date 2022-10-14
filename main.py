@@ -50,12 +50,14 @@ async def finduser(ctx, name="", date=None):
       server = (i[1])[1:-2]
       if "#" in name:
         if server == name:
-          await ctx.channel.send(f"{(i[1])[:-1]} Score is {i[2]}, rank is {i[0]}")
+          embed=discord.Embed(title=f"**{(i[1])[:-1]}**'s Stats in `{date}`", description=f"May vary depending on time logged\n\n**Score:**{i[2]}\nRank: {i[0]}", color=0x73AADF)
+          await ctx.channel.send(embed=embed)
           return
       else:
         s = SequenceMatcher(None, (server[:-5]), name)
         if s.ratio() > 0.75:
-          await ctx.channel.send(f"{(i[1])[:-1]} Score is {i[2]}, rank is {i[0]}")
+          embed=discord.Embed(title=f"**{(i[1])[:-1]}**'s Stats in `{date}`", description=f"May vary depending on time logged\n\n**Score:**{i[2]}\nRank: {i[0]}", color=0x73AADF)
+          await ctx.channel.send(embed=embed)
           return
   await ctx.channel.send("Couldn't find the user you are looking for")
     
