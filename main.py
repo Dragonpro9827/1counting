@@ -38,8 +38,11 @@ async def finduser(ctx, name=""):
   channel = ctx.channel.id
   if name == "a":
     return
-  today = datetime.datetime.now()
-  date = f"{today.year}-{today.month}-{today.day}"
+  if date == None:
+    today = datetime.datetime.now()
+    date = f"{today.year}-{today.month}-{today.day}"
+  elif len(date) != 10:
+    return
   c.execute("select list from ulb where time=%s", (date,))
   data= c.fetchone()[0]
   for x in data:
@@ -65,7 +68,7 @@ async def find(ctx, name="a", date=None):
   if date == None:
     today = datetime.datetime.now()
     date = f"{today.year}-{today.month}-{today.day}"
-  else if len(date) != 10:
+  elif len(date) != 10:
     return
   c.execute("select list from lb where time=%s", (date,))
   data= c.fetchone()[0]
