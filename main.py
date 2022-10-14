@@ -177,7 +177,7 @@ async def on_message(message):
             b = [[i for i in item if i != ''] for item in new_data]
             data = [item for item in b if item != []]
             u = int((data[0][0]).replace("#","").replace(",",""))
-            u = (u+10)/10
+            u = (u+9)/10
             print(u)
             if int(u) > 125:
               return
