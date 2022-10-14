@@ -32,6 +32,8 @@ time = 0
 async def on_ready():
     print(f"Logged in as {bot.user.name} ({bot.user.id})")
 
+
+    
 @bot.command()
 async def ulb(ctx, date=None, page=1):
     channel = ctx.channel.id
@@ -50,6 +52,9 @@ async def ulb(ctx, date=None, page=1):
       await ctx.channel.send(embed=embed)
       return
     try:
+      today = datetime.datetime(int(date[0:4]), int(date[5:7]), int(date[8:10]))
+      yesterday = today - timedelta(days=1)
+      print(yesterday)
       c.execute("select list from ulb where time=%s", (date,))
       data = c.fetchone()[0]
     except:
