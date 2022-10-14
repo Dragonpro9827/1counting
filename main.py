@@ -34,7 +34,7 @@ async def on_ready():
 
 @bot.command()
 async def help(ctx):
-  embed=discord.Embed(title=f"Need Help? Saul Goodman", color=0x50C878)
+  embed=discord.Embed(title=f"Need Help? Saul Goodman", description="Bot collects data from every server its in from the +1 commands sent", color=0x50C878)
   embed.add_field(name="History Commands", value="**-ulb** *{Date: 2022-10-09}* *{Page: 1-125}* Get User leaderboards back in time\n**-lb** *{Date: 2022-10-09}* *{Page: 1-125}* Get Server leaderboards back in time", inline=True)
   embed.add_field(name="Present Statistics", value="**-finduser** *{Name: Christian230102#2391}* Find a specific user and see their current score and rankings, as well as in the past activity\n**-find** *{Server Name: MilkMania}* Find a specific server and see their current score and rankings, as well as in the past activity\n", inline=True)
   channel = ctx.channel.id
