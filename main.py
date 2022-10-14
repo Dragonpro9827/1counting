@@ -45,16 +45,15 @@ async def finduser(ctx, name="", date=None):
     return
   c.execute("select list from ulb where time=%s", (date,))
   data= c.fetchone()[0]
+  print(name)
   for x in data:
     for i in data[x]:
       server = (i[1])[:-2]
-      print(server)
       if "#" in name:
         if server == name:
           await ctx.channel.send(f"{(i[1])[:-1]} Score is {i[2]}, rank is {i[0]}")
           return
       else:
-        print(server[:-5])
         if server[:-5] == name:
           await ctx.channel.send(f"{(i[1])[:-1]} Score is {i[2]}, rank is {i[0]}")
           return
