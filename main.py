@@ -49,8 +49,7 @@ async def finduser(ctx, name="", date=None):
     for i in data[x]:
       server = (i[1])[1:-2]
       if "#" in name:
-        s = SequenceMatcher(None, (server), name)
-        if s.ratio() > 0.75:
+        if server == name:
           await ctx.channel.send(f"{(i[1])[:-1]} Score is {i[2]}, rank is {i[0]}")
           return
       else:
