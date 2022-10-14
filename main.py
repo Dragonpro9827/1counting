@@ -29,6 +29,7 @@ a.update({"2": [['#11', ' OscarTheChocoBoi🍫#1383, ', '415,775'], ['#12', ' Ko
 print(a["2"])
 a = json.dumps(a)
 c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", ("2022-10-13", a, a))
+database.commit()
 guild = 635976654111506446
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="-", intents=intents)
