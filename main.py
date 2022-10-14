@@ -28,7 +28,7 @@ print(a["2"])
 a.update({"2": [['#11', ' OscarTheChocoBoi🍫#1383, ', '415,775'], ['#12', ' Korl 🍩🍷#7676, ', '400,769'], ['#13', ' Sinful#6768, ', '390,516'], ['#14', ' lexyealdotorg#2909, ', '385,951'], ['#15', ' M̴a̴g̴g̴i̴e̴#0001, ', '361,920'], ['#16', ' regularName73#8395, ', '360,617'], ['#17', ' JakeStener#0001, ', '319,867'], ['#18', ' vovker#6689, ', '311,230'], ['#19', ' minnie🍒#8685, ', '280,600'], ['#20', ' curio#8457, ', '260,834']], '3': [['#21', ' w0rd#8630, ', '259,379'], ['#22', ' Légende#0009, ', '246,794'], ['#23', ' Saiyan#9209, ', '243,797'], ['#24', ' tiim1904#7790, ', '227,241'], ['#25', ' seokjinie#0193, ', '211,183'], ['#26', ' Sora#1241, ', '206,774'], ['#27', ' Bonaparte#1146, ', '201,319'], ['#28', ' 𝙸 𝙲 𝚄#5920, ', '199,639'], ['#29', ' Transportfan2#7324, ', '196,866'], ['#30', ' JustRori#8790, ', '193,542']]})
 print(a["2"])
 a = json.dumps(a)
-c.execute("insert into ulb (time, list) values (%s, %s) where time=%s", ("2022-10-13", a, "2022-10-13"))
+c.execute("insert into ulb (time, list) values (%s, %s) on conflict (time) do update set list=%s", ("2022-10-13", a, a))
 guild = 635976654111506446
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="-", intents=intents)
