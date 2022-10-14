@@ -50,13 +50,15 @@ async def finduser(ctx, name="", date=None):
       server = (i[1])[1:-2]
       if "#" in name:
         if server == name:
-          embed=discord.Embed(title=f"**{(i[1])[:-1]}**'s Stats in `{date}`", description=f"May vary depending on time logged\n\n**Score:**{i[2]}\nRank: {i[0]}", color=0x73AADF)
+          embed=discord.Embed(title=f"**{(i[1])[:-1]}**'s Stats in `{date}`", description=f"**Score:** {i[2]}\n**Rank:** {i[0]}", color=0x73AADF)
+          embed.set_footer(text="-help | May vary depending on time logged\n\n")
           await ctx.channel.send(embed=embed)
           return
       else:
         s = SequenceMatcher(None, (server[:-5]), name)
         if s.ratio() > 0.75:
-          embed=discord.Embed(title=f"**{(i[1])[:-1]}**'s Stats in `{date}`", description=f"May vary depending on time logged\n\n**Score:**{i[2]}\nRank: {i[0]}", color=0x73AADF)
+          embed=discord.Embed(title=f"**{(i[1])[:-1]}**'s Stats in `{date}`", description=f"**Score:** {i[2]}\n**Rank:** {i[0]}", color=0x73AADF)
+          embed.set_footer(text="-help | May vary depending on time logged\n\n")
           await ctx.channel.send(embed=embed)
           return
   await ctx.channel.send("Couldn't find the user you are looking for")
@@ -113,6 +115,7 @@ async def ulb(ctx, date=None, page=1):
           if str(i[0]) == (remade):
             send+=f"{remade}: {len(i[1])}\n"
       embed=discord.Embed(title=f"Amount of pages in {date}", description=send, color=0x8c64d4)
+      embed.set_footer(text="-help | May vary depending on time logged\n\n")
       await ctx.channel.send(embed=embed)
       return
     try:
@@ -156,6 +159,7 @@ async def ulb(ctx, date=None, page=1):
           send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
         counter+=1
       embed=discord.Embed(title=f"*TOP USERS* in {date}", description=send, color=0x8c64d4)
+      embed.set_footer(text="-help | May vary depending on time logged\n\n")
       await ctx.channel.send(embed=embed)
     except:
       await ctx.channel.send("Page data wasnt collected :(")
@@ -178,6 +182,7 @@ async def lb(ctx, date=None, page=1):
           if str(i[0]) == (remade):
             send+=f"{remade}: {len(i[1])}\n"
       embed=discord.Embed(title=f"Amount of pages in {date}", description=send, color=0x8c64d4)
+      embed.set_footer(text="-help | May vary depending on time logged\n\n")
       await ctx.channel.send(embed=embed)
       return
     try:
@@ -221,6 +226,7 @@ async def lb(ctx, date=None, page=1):
           send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
         counter+=1
       embed=discord.Embed(title=f"*HIGH SCORES* in {date}", description=send, color=0x8c64d4)
+      embed.set_footer(text="-help | May vary depending on time logged\n\n")
       await ctx.channel.send(embed=embed)
     except:
       await ctx.channel.send("Page data wasnt collected :(")
