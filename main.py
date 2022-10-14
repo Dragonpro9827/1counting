@@ -33,6 +33,22 @@ async def on_ready():
     print(f"Logged in as {bot.user.name} ({bot.user.id})")
 
 @bot.command()
+async def find(ctx, name=None):
+  eg = {"cho": "𝓣𝓱𝓮 𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓕𝓪𝓶𝓲𝓵𝔂™", "countaholics": "𝕮𝖔𝖚𝖓𝖙𝖆𝖍𝖔𝖑𝖎𝖈𝖘", "jake & oscar": "Jake & Oscar's Counting Paradise", "cu": "CU - Contadores Unidos", "ussr": "The USSR Ziggy Express"}
+  if name == None:
+    return
+  try:
+    name = eg[name]
+  except:
+    pass
+  today = datetime.datetime.now()
+  date = f"{today.year}-{today.month}-{today.day}"
+  c.execute("select list from ulb where time=%s", (date,))
+  data= c.fetchall()
+  for x in data:
+    for i in data[x]:
+      print(i)
+@bot.command()
 async def help(ctx):
   embed=discord.Embed(title=f"Need Help? Saul Goodman", description="Bot collects data from every server its in from the +1 commands sent", color=0x50C878)
   embed.add_field(name="History Commands", value="**-ulb** *{Date: 2022-10-09}* *{Page: 1-125}* Get User leaderboards back in time\n**-lb** *{Date: 2022-10-09}* *{Page: 1-125}* Get Server leaderboards back in time", inline=True)
