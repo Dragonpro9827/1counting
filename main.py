@@ -84,7 +84,7 @@ async def ulb(ctx, date=None, page=1):
                   today_count, yesterday_count = int((x[2]).replace(",", "")), int(((i)[2]).replace(",", ""))
                   e = int(x[0].replace("#",""))-int(i[0].replace("#",""))
                   if e < 0:
-                    e = f"↓{(e*-1)}"
+                    e = f"↓{int(e*-1)}"
                   else:
                     e = f"↑{e}"
                   send+=f"**{i[0]}** {i[1]} **{i[2]}** `[+{yesterday_count-today_count}] {e}`\n"
