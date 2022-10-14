@@ -75,11 +75,12 @@ async def ulb(ctx, date=None, page=1):
       for i in data:
         if no == True:
           if i[1] == (data_yesterday[counter])[1]:
-            today_count = (i[2]).replace(",", "")
-            yesterday_count = ((data_yesterday[counter])[2]).replace(",", "")
-            print(today_count)
-            print(yesterday_count)
-        send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
+            today_count, yesterday_count = int((i[2]).replace(",", "")), int(((data_yesterday[counter])[2]).replace(",", ""))
+            send+=f"**{i[0]}** {i[1]} **{i[2]}** `[+{today_count-yesterday_count}]`\n"
+          else:
+            send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
+        else:
+          send+=f"**{i[0]}** {i[1]} **{i[2]}**\n"
         counter+=1
       embed=discord.Embed(title=f"*TOP USERS* in {date}", description=send, color=0x301934)
       await ctx.channel.send(embed=embed)
