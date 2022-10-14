@@ -35,7 +35,7 @@ async def on_ready():
 
 @bot.command()
 async def find(ctx, name="a"):
-  name = name.replace(" ","")
+  name = name.replace(" ","&")
   channel = ctx.channel.id
   eg = {"cho": "𝓣𝓱𝓮 𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓕𝓪𝓶𝓲𝓵𝔂™", "countaholics": "𝕮𝖔𝖚𝖓𝖙𝖆𝖍𝖔𝖑𝖎𝖈𝖘", "jake & oscar": "Jake & Oscar's Counting Paradise", "cu": "CU - Contadores Unidos", "ussr": "The USSR Ziggy Express"}
   if name == "a":
