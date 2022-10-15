@@ -73,7 +73,8 @@ async def find(ctx, name="a", date=None):
     for i in eg:
       send+=f"**{i}** - {eg[i]}\n"
     embed=discord.Embed(title="**List of shortcuts**", description=send, color=0x73AADF)
-    await ctx.channel.send(embed=embed)                             
+    await ctx.channel.send(embed=embed)  
+    return
   if name == "a":
     return
   try:
