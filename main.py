@@ -50,14 +50,14 @@ async def finduser(ctx, name="", date=None):
       server = (i[1])[1:-2]
       if "#" in name:
         if server == name:
-          embed=discord.Embed(title=f"**{(i[1])[:-1]}**'s Stats in `{date}`", description=f"**Score:** {i[2]}\n**Rank:** {i[0]}", color=0x9DD2AA)
+          embed=discord.Embed(title=f"**{(i[1])[:-2]}**'s Stats in `{date}`", description=f"**Score:** {i[2]}\n**Rank:** {i[0]}", color=0x9DD2AA)
           embed.set_footer(text="-help | May vary depending on time logged\n\n")
           await ctx.channel.send(embed=embed)
           return
       else:
         s = SequenceMatcher(None, (server[:-5]), name)
         if s.ratio() > 0.75:
-          embed=discord.Embed(title=f"**{(i[1])[:-1]}**'s Stats in `{date}`", description=f"**Score:** {i[2]}\n**Rank:** {i[0]}", color=0x9DD2AA)
+          embed=discord.Embed(title=f"**{(i[1])[:-2]}**'s Stats in `{date}`", description=f"**Score:** {i[2]}\n**Rank:** {i[0]}", color=0x9DD2AA)
           embed.set_footer(text="-help | May vary depending on time logged\n\n")
           await ctx.channel.send(embed=embed)
           return
@@ -93,7 +93,7 @@ async def find(ctx, name="a", date=None):
       server = (i[1])
       s = SequenceMatcher(None, (server[1:-2]), name)
       if s.ratio() > 0.75:
-        embed=discord.Embed(title=f"**{(i[1])[:-1]}**'s Stats in `{date}`", description=f"**Score:** {i[2]}\n**Rank:** {i[0]}", color=0x73AADF)
+        embed=discord.Embed(title=f"**{(i[1])[:-2]}**'s Stats in `{date}`", description=f"**Score:** {i[2]}\n**Rank:** {i[0]}", color=0x73AADF)
         embed.set_footer(text="-find LIST gives shortcuts!| May vary depending on time logged\n\n")
         await ctx.channel.send(embed=embed)
         return
