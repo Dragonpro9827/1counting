@@ -68,6 +68,12 @@ async def finduser(ctx, name="", date=None):
 async def find(ctx, name="a", date=None):
   channel = ctx.channel.id
   eg = {"cho": "𝓣𝓱𝓮 𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓕𝓪𝓶𝓲𝓵𝔂™", "countaholics": "𝕮𝖔𝖚𝖓𝖙𝖆𝖍𝖔𝖑𝖎𝖈𝖘", "jake": "Jake & Oscar's Counting Paradise", "cu": "CU - Contadores Unidos", "ussr": "The USSR Ziggy Express", "korland": "Delicious Korland", "maggies": "Maggie's Cat's", "catgirls": "Communist Catgirls"}
+  if name == list:
+    send=""
+    for i in eg:
+      send+=f"**{i}** - {eg[i]}\n"
+    embed=discord.Embed(title="**List of shortcuts**", description=send, color=0x73AADF")
+    await ctx.channel.send(embed=embed)                             
   if name == "a":
     return
   try:
@@ -87,7 +93,7 @@ async def find(ctx, name="a", date=None):
       s = SequenceMatcher(None, (server[1:-2]), name)
       if s.ratio() > 0.75:
         embed=discord.Embed(title=f"**{(i[1])[:-1]}**'s Stats in `{date}`", description=f"**Score:** {i[2]}\n**Rank:** {i[0]}", color=0x73AADF)
-        embed.set_footer(text="-help | May vary depending on time logged\n\n")
+        embed.set_footer(text="-find LIST gives shortcuts!| May vary depending on time logged\n\n")
         await ctx.channel.send(embed=embed)
         return
   await ctx.channel.send("Couldn't find the server you are looking for")
