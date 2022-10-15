@@ -97,7 +97,7 @@ async def find(ctx, name="a", date=None):
   key = max(a.keys())
   print(key)
   i = a[key]
-  embed=discord.Embed(title=f"**{(i[1])[:-2]}**'s Stats in `{date}`", description=f"**Score:** {i[2]}\n**Rank:** {i[0]}", color=0x73AADF)
+  embed=discord.Embed(title=f"**{(i[0])[:-2]}**'s Stats in `{date}`", description=f"**Score:** {i[1]}\n**Rank:** {i[2]}", color=0x73AADF)
   embed.set_footer(text="-find LIST gives shortcuts!| May vary depending on time logged\n\n")
   await ctx.channel.send(embed=embed)
   #await ctx.channel.send("Couldn't find the server you are looking for")
