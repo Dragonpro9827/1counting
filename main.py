@@ -67,7 +67,7 @@ async def finduser(ctx, name="", date=None):
 @bot.command()
 async def find(ctx, name="a", date=None):
   channel = ctx.channel.id
-  eg = {"cho": "𝓣𝓱𝓮 𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓕𝓪𝓶𝓲𝓵𝔂™", "countaholics": "𝕮𝖔𝖚𝖓𝖙𝖆𝖍𝖔𝖑𝖎𝖈𝖘", "jake": "Jake & Oscar's Counting Paradise", "cu": "CU - Contadores Unidos", "ussr": "The USSR Ziggy Express", "korland": "Delicious Korland", "maggies": "Maggie's Cat's", "catgirls": "Communist Catgirls"}
+  eg = {"cho": "𝓣𝓱𝓮 𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓕𝓪𝓶𝓲𝓵𝔂™", "countaholics": "𝕮𝖔𝖚𝖓𝖙𝖆𝖍𝖔𝖑𝖎𝖈𝖘", "jake": "Jake & Oscar's Counting Paradise", "cu": "CU - Contadores Unidos", "ziggy": "The USSR Ziggy Express", "korland": "Delicious Korland", "maggies": "Maggie's Cat's", "catgirls": "Communist Catgirls"}
   if name == "list":
     send=""
     for i in eg:
