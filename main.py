@@ -45,6 +45,7 @@ async def finduser(ctx, name="", date=None):
     return
   c.execute("select list from ulb where time=%s", (date,))
   data= c.fetchone()[0]
+  a={}
   for x in data:
     for i in data[x]:
       server = (i[1])[1:-2]
