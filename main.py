@@ -55,13 +55,14 @@ async def finduser(ctx, name="", date=None):
           await ctx.channel.send(embed=embed)
           return
       else:
-        s = SequenceMatcher(None, (server[:-5]), name)
-        if s.ratio() > 0.75:
-          embed=discord.Embed(title=f"**{(i[1])[:-2]}**'s Stats in `{date}`", description=f"**Score:** {i[2]}\n**Rank:** {i[0]}", color=0x9DD2AA)
-          embed.set_footer(text="-help | May vary depending on time logged\n\n")
-          await ctx.channel.send(embed=embed)
-          return
-  await ctx.channel.send("Couldn't find the user you are looking for")
+        s = SequenceMatcher(None, (server[1:-2]), name)
+        a[s.ratio()] = [((i[1])[:-2]), (i[2]), (i[0])]
+  key = max(a.keys())
+  i = a[key]
+  embed=discord.Embed(title=f"**{(i[0])}**'s Stats in `{date}`", description=f"**Score:** {i[1]}\n**Rank:** {i[2]}", color=0x73AADF)
+  embed.set_footer(text="-find LIST gives shortcuts!| May vary depending on time logged\n\n")
+  await ctx.channel.send(embed=embed)
+  #await ctx.channel.send("Couldn't find the server you are looking for")
     
     
 @bot.command()
@@ -95,7 +96,6 @@ async def find(ctx, name="a", date=None):
       s = SequenceMatcher(None, (server[1:-2]), name)
       a[s.ratio()] = [((i[1])[:-2]), (i[2]), (i[0])]
   key = max(a.keys())
-  print(key)
   i = a[key]
   embed=discord.Embed(title=f"**{(i[0])}**'s Stats in `{date}`", description=f"**Score:** {i[1]}\n**Rank:** {i[2]}", color=0x73AADF)
   embed.set_footer(text="-find LIST gives shortcuts!| May vary depending on time logged\n\n")
