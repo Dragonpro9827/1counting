@@ -122,6 +122,8 @@ async def ulb(ctx, page="", date=None):
     if len(page) >=7:
       page =date
       date = page
+      if page == "":
+        page = 1
     else:
       page = 1
     if date == None:
@@ -193,6 +195,8 @@ async def lb(ctx, page="", date=None):
     if len(page) >=7:
       page =date
       date = page
+      if page == "":
+        page = 1
     else:
       page = 1
     if date == None:
