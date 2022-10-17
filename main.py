@@ -117,12 +117,12 @@ async def help(ctx):
   channel = ctx.channel.id
   await ctx.channel.send(embed=embed)
 @bot.command()
-async def ulb(ctx, page="", date=None):
+async def ulb(ctx, page=None, date=None):
     channel = ctx.channel.id
     if len(page) >=7:
       page = date
       date = int(page)
-      if page == "":
+      if page == None:
         page = 1
     else:
       page = 1
@@ -190,12 +190,12 @@ async def ulb(ctx, page="", date=None):
       await ctx.channel.send("Page data wasnt collected | `-ulb {page} {time}`")
       return
 @bot.command()
-async def lb(ctx, page="", date=None):
+async def lb(ctx, page=None, date=None):
     channel = ctx.channel.id
     if len(page) >=7:
       page =date
       date = int(page)
-      if page == "":
+      if page == None:
         page = 1
     else:
       page = 1
