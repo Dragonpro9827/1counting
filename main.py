@@ -54,10 +54,16 @@ async def daily(ctx, mode="lb"):
     for x in data[str(length)]:
       num = int((x[2]).replace(",", ""))
       num_yesterday = int((((data_yesterday[str(length)])[counter])[2]).replace(",", ""))
-      print(num)
-      print(num_yesterday)
-      print((int(num)-int(num_yesterday)))
+      data_dict[x[1]] = (int(num)-int(num_yesterday))
       counter+=1
+  data_dict = sorted(data_dict.items(), key=lambda x:x[1], reverse=True)
+  counter = 0
+  send=""
+  for i in data_dict:
+    send+=f"**{i}** {data_dict[i]}"
+  embed=discord.Embed(title=f"Top 10 Daily {mode}", description=send, color=0xf1f3e1)
+  embed.set_footer(text="-help | May vary depending on time logged\n\n")
+  await ctx.channel.send(embed=embed)
 	
 @bot.command()
 async def finduser(ctx, name="", date=None):
