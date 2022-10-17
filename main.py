@@ -61,7 +61,6 @@ async def daily(ctx, mode="lb"):
   data_dict = sorted(data_dict.items(), key=lambda x:x[1], reverse=True)
   counter = 0
   send=""
-	print("a")
   for i in data_dict:
     print(i)
     send+=f"**{i}** {data_dict[i]}"
