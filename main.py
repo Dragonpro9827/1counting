@@ -61,7 +61,10 @@ async def daily(ctx, mode="lb"):
   counter = 0
   send=""
   for i in data_dict:
-    send+=f"**{i[0]}** {i[1]}"
+    send+=f"**{(i[0])[:-1]}** {i[1]}\n"
+		counter+=1
+    if counter == 10:
+			return
   embed=discord.Embed(title=f"Top 10 Daily {mode}", description=send, color=0xf1f3e1)
   embed.set_footer(text="-help | May vary depending on time logged\n\n")
   await ctx.channel.send(embed=embed)
