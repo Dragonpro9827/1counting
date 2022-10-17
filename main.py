@@ -34,6 +34,25 @@ async def on_ready():
     print(f"Logged in as {bot.user.name} ({bot.user.id})")
 
 @bot.command()
+async def daily(ctx, mode="lb"):
+  eg = {"lb": "lb", "ulb": "ulb"}
+  today = datetime.datetime.now()
+  date = f"{today.year}-{today.month}-{today.day}"
+  try:
+    mode = eg[mode]
+  except:
+    return
+  c.execute(f"select list from {mode} where time=%s", (date,))
+  data = c.fetchone()[0]
+  today = today.year,today.month, today.day
+  yesterday = str(today - timedelta(days=1))[0:11]
+  c.execute(f"select list from {mode} where time=%s", (yesterday,))
+  data_yesterday = c.fetchone()[0]
+	data_dict = {}
+	for x in data:
+		print(x)
+	
+@bot.command()
 async def finduser(ctx, name="", date=None):
   channel = ctx.channel.id
   if name == "":
