@@ -55,7 +55,11 @@ async def daily(ctx, mode="lb"):
   for length in range(1, len(data)):
     counter = 0
     for x in data[str(length)]:
-      num = (((x[2]).replace(",", "").replace("+", "\u002B")))
+      try:
+        num = int(((x[2]).replace(",", "").replace("+", "\u002B")))
+      except:
+        print(x)
+        pass
       num_yesterday = int((((data_yesterday[str(length)])[counter])[2]).replace(",", ""))
       ye = ((int(num)-int(num_yesterday)))
       data_dict[(x[1])] = ye
