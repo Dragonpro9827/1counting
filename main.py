@@ -56,6 +56,8 @@ async def daily(ctx, mode="lb"):
     counter = 0
     for x in data[str(length)]:
       try:
+        b = [[i for i in item if i != ''] for item in x]
+        x = [item for item in b if item != []]
         num = int(((x[2]).replace(",", "").replace("+", "\u002B")))
       except:
         print(x)
