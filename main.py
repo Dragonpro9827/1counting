@@ -48,9 +48,9 @@ async def daily(ctx, mode="lb"):
   yesterday = str(today - timedelta(days=1))[0:11]
   c.execute(f"select list from {mode} where time=%s", (yesterday,))
   data_yesterday = c.fetchone()[0]
-	data_dict = {}
-	for x in data:
-		print(x)
+  data_dict = {}
+  for x in data:
+    print(x)
 	
 @bot.command()
 async def finduser(ctx, name="", date=None):
