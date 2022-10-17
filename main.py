@@ -60,6 +60,7 @@ async def daily(ctx, mode="lb"):
         counter+=1
       except:
         pass
+	print("A")
   data_dict = sorted(data_dict.items(), key=lambda item: item[1], reverse=True)
   counter = 1
   send=""
