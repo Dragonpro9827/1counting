@@ -62,6 +62,8 @@ async def daily(ctx, mode="lb"):
         pass
   data_dict = sorted(data_dict.items(), key=lambda item: item[1], reverse=True)
   counter = 1
+  print('a')
+        
   send=""
   for i in data_dict:
     if counter > 10:	
