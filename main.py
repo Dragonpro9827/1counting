@@ -50,11 +50,13 @@ async def daily(ctx, mode="lb"):
   data_yesterday = c.fetchone()[0]
   data_dict = {}
   for length in range(1, len(data)):
+    counter=0
     for x in data[str(length)]:
-      print(data_yesterday[str(length)])
+      print(((data_yesterday[str(length)])[counter][2]))
       print(x[2])
-      num = int((x[2]).replace(",", "")) - int(((data_yesterday[str(length)])[2]).replace(",", ""))
+      num = int((x[2]).replace(",", "")) - int((((data_yesterday[str(length)])[counter])[2]).replace(",", ""))
       print(num)
+      counter+=1
 	
 @bot.command()
 async def finduser(ctx, name="", date=None):
