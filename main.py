@@ -53,7 +53,7 @@ async def daily(ctx, mode="lb"):
     print(length)
     for x in data[str(length)]:
       print((data_yesterday[str(length)])[2])
-      num = int(x[2].replace(",", "")) - int((data_yesterday[str(length)])[2].replace(",", ""))
+      num = int((x[2]).replace(",", "")) - int((data_yesterday[str(length)])[2].replace(",", ""))
       print(num)
 	
 @bot.command()
