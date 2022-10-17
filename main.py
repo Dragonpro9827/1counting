@@ -120,8 +120,8 @@ async def help(ctx):
 async def ulb(ctx, page="", date=None):
     channel = ctx.channel.id
     if len(page) >=7:
-      page =date
-      date = page
+      page = date
+      date = int(page)
       if page == "":
         page = 1
     else:
@@ -194,7 +194,7 @@ async def lb(ctx, page="", date=None):
     channel = ctx.channel.id
     if len(page) >=7:
       page =date
-      date = page
+      date = int(page)
       if page == "":
         page = 1
     else:
