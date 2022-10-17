@@ -42,18 +42,20 @@ async def daily(ctx, mode="lb"):
     mode = eg[mode]
   except:
     return
-  c.execute(f"select list from {mode} where time=%s", (date,))
-  data = c.fetchone()[0]
-  print(data)
   today = datetime.datetime.now()
   yesterday = str(today - timedelta(days=1))[0:11]
-  print(yesterday)
-  c.execute(f"select list from {mode} where time=%s", (yesterday,))
+  if mode == "lb":
+        c.execute(f"select list from lb where time=%s", (date,))
+  if mod == "ulb":
+        c.execute(f"select list from ulb} where time=%s", (yesterday,))
+  data = c.fetchone()[0]
+  
   data_yesterday = c.fetchone()[0]
   data_dict = {}
-  for x in data:
-    for i in x:
-        print(i)
+  for length in range(1, len(data)):
+    print(counter)
+    for x in data[counter]:
+      print(x)
 	
 @bot.command()
 async def finduser(ctx, name="", date=None):
