@@ -54,11 +54,10 @@ async def daily(ctx, mode="lb"):
     for x in data[str(length)]:
       num = int((x[2]).replace(",", ""))
       num_yesterday = int((((data_yesterday[str(length)])[counter])[2]).replace(",", ""))
-			
       ye = ((int(num)-int(num_yesterday)))
       data_dict[(x[1])] = ye
       counter+=1
-  data_dict = sorted(data_dict.items(), key=lambda x:x[1], reverse=True)
+  data_dict = sorted(data_dict.items(), key=lambda item: item[1], reverse=True)
   counter = 0
   send=""
   for i in data_dict:
