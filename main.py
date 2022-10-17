@@ -44,8 +44,9 @@ async def daily(ctx, mode="lb"):
     return
   c.execute(f"select list from {mode} where time=%s", (date,))
   data = c.fetchone()[0]
-  today = today.year,today.month, today.day
+  today = datetime.datetime.now()
   yesterday = str(today - timedelta(days=1))[0:11]
+  print(yesterday)
   c.execute(f"select list from {mode} where time=%s", (yesterday,))
   data_yesterday = c.fetchone()[0]
   data_dict = {}
