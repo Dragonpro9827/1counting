@@ -50,8 +50,8 @@ async def daily(ctx, mode="lb"):
   data_yesterday = c.fetchone()[0]
   data_dict = {}
   for length in range(1, len(data)):
-    print(counter)
-    for x in data[counter]:
+    print(length)
+    for x in data[length]:
       print(x)
 	
 @bot.command()
