@@ -56,15 +56,16 @@ async def daily(ctx, mode="lb"):
     counter = 0
     for x in data[str(length)]:
       try:
-        b = [[i for i in item if i != ''] for item in x]
-        x = [item for item in b if item != []]
-        num = int(((x[2]).replace(",", "").replace("+", "\u002B")))
+        num = int(((x[2]).replace(",", "")))
+        num_yesterday = int((((data_yesterday[str(length)])[counter])[2]).replace(",", ""))
+        ye = ((int(num)-int(num_yesterday)))
+        data_dict[(x[1])] = ye
       except:
-        print(x)
+        num = int(((x[4]).replace(",", "")))
+        num_yesterday = int((((data_yesterday[str(length)])[counter])[4]).replace(",", ""))
+        ye = ((int(num)-int(num_yesterday)))
+        data_dict[(x[2])] = ye
         pass
-      num_yesterday = int((((data_yesterday[str(length)])[counter])[2]).replace(",", ""))
-      ye = ((int(num)-int(num_yesterday)))
-      data_dict[(x[1])] = ye
       counter+=1
   data_dict = sorted(data_dict.items(), key=lambda item: item[1], reverse=True)
   counter = 1
