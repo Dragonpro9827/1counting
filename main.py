@@ -59,7 +59,9 @@ async def daily(ctx, mode="lb"):
   data_dict = sorted(data_dict.items(), key=lambda x:x[1], reverse=True)
   counter = 0
   send=""
+	print(data_dict)
   for i in data_dict:
+		print(i)
     send+=f"**{i}** {data_dict[i]}"
   embed=discord.Embed(title=f"Top 10 Daily {mode}", description=send, color=0xf1f3e1)
   embed.set_footer(text="-help | May vary depending on time logged\n\n")
