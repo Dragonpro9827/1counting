@@ -1,5 +1,5 @@
 import discord
-from discord.ext import commands,tasks
+from discord.ext import commands, tasks
 import datetime
 import psycopg2
 import os
@@ -14,8 +14,8 @@ from datetime import date
 import math
 token = os.environ["token"]
 thing = os.environ["DATABASE_URL"]
-database=psycopg2.connect(thing,sslmode='require')
-c=database.cursor()
+database = psycopg2.connect(thing, sslmode='require')
+c = database.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS ulb
              (time DATE primary key,
              list json)''')
@@ -29,9 +29,12 @@ bot = commands.Bot(command_prefix="-", intents=intents)
 bot.remove_command('help')
 x = True
 time = 0
+
+
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user.name} ({bot.user.id})")
+
 
 @bot.command()
 async def daily(ctx, mode="lb"):
@@ -50,19 +53,20 @@ async def daily(ctx, mode="lb"):
   data_yesterday = c.fetchone()[0]
   data_dict = {}
   for length in range(1, len(data)):
-    counter=0
+    counter = 0
     for x in data[str(length)]:
       try:
-      	num = int((x[2])).replace(",", "")
-				num_yesterday = int((((data_yesterday[str(length)])[counter])[2]).replace(",", ""))
-				ye = ((int(num)-int(num_yesterday)))
-    		data_dict[(x[1])] = ye
+        num = int((x[2])).replace(",", "")
+        num_yesterday = int((((data_yesterday[str(length)])[counter])[2]).replace(",", ""))
+        ye = ((int(num)-int(num_yesterday)))
+        data_dict[(x[1])] = ye
         counter+=1
       except:
         pass
   data_dict = sorted(data_dict.items(), key=lambda item: item[1], reverse=True)
   counter = 1
   send=""
+  print("A")
   for i in data_dict:
     if counter > 10:	
       break
@@ -102,7 +106,7 @@ async def finduser(ctx, name="", date=None):
   embed=discord.Embed(title=f"**{(i[0])}**'s Stats in `{date}`", description=f"**Score:** {i[1]}\n**Rank:** {i[2]}", color=0x73AADF)
   embed.set_footer(text="-find LIST gives shortcuts!| May vary depending on time logged\n\n")
   await ctx.channel.send(embed=embed)
-  #await ctx.channel.send("Couldn't find the server you are looking for")
+  # await ctx.channel.send("Couldn't find the server you are looking for")
     
     
 @bot.command()
@@ -140,7 +144,7 @@ async def find(ctx, name="", date=None):
   embed=discord.Embed(title=f"**{(i[0])}**'s Stats in `{date}`", description=f"**Score:** {i[1]}\n**Rank:** {i[2]}", color=0x73AADF)
   embed.set_footer(text="-find LIST gives shortcuts!| May vary depending on time logged\n\n")
   await ctx.channel.send(embed=embed)
-  #await ctx.channel.send("Couldn't find the server you are looking for")
+  # await ctx.channel.send("Couldn't find the server you are looking for")
   
 @bot.command()
 async def help(ctx):
