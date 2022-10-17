@@ -62,7 +62,7 @@ async def daily(ctx, mode="lb"):
   send=""
   for i in data_dict:
     if counter >= 10:	
-      pass
+      return
     send+=f"**#{counter} {(i[0])[:-1]}** {i[1]}\n"	
     counter+=1
   embed=discord.Embed(title=f"Top 10 Daily {mode}", description=send, color=0xf1f3e1)
