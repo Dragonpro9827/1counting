@@ -119,13 +119,15 @@ async def help(ctx):
 @bot.command()
 async def ulb(ctx, page=1, date=None):
     channel = ctx.channel.id
+    if len(page) >=7:
+      page =date
+      date = page
     if date == None:
       today = datetime.datetime.now()
       date = f"{today.year}-{today.month}-{today.day}"
     if len(date)== 7:
       c.execute("select time, list from ulb")
       data= c.fetchall()
-      print(date[5:0])
       send = ""
       days = calendar.monthrange(int(date[0:4]), int(date[5:7]))[1]
       for x in range(0, days):
@@ -186,6 +188,9 @@ async def ulb(ctx, page=1, date=None):
 @bot.command()
 async def lb(ctx, page=1, date=None):
     channel = ctx.channel.id
+    if len(page) >=7:
+      page =date
+      date = page
     if date == None:
       today = datetime.datetime.now()
       date = f"{today.year}-{today.month}-{today.day}"
