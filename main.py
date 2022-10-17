@@ -44,12 +44,9 @@ async def daily(ctx, mode="lb"):
     return
   today = datetime.datetime.now()
   yesterday = str(today - timedelta(days=1))[0:11]
-  if mode == "lb":
-        c.execute(f"select list from lb where time=%s", (date,))
-  if mod == "ulb":
-        c.execute(f"select list from ulb} where time=%s", (yesterday,))
+  c.execute(f"select list from {mode} where time=%s", (date,))
   data = c.fetchone()[0]
-  
+  c.execute(f"select list from {mode} where time=%s", (yesterday,))
   data_yesterday = c.fetchone()[0]
   data_dict = {}
   for length in range(1, len(data)):
