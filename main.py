@@ -58,8 +58,7 @@ async def daily(ctx, mode="lb"):
 	      ye = ((int(num)-int(num_yesterday)))
 	      data_dict[(x[1])] = ye
 	      counter+=1
-			except:
-				
+	    except:
 				pass
   data_dict = sorted(data_dict.items(), key=lambda item: item[1], reverse=True)
   counter = 1
