@@ -70,7 +70,7 @@ async def finduser(ctx, name="", date=None):
     
     
 @bot.command()
-async def find(ctx, name="a", date=None):
+async def find(ctx, name="", date=None):
   channel = ctx.channel.id
   if len(name) >= 7:
     name = date
