@@ -201,13 +201,25 @@ async def ulb(ctx, page=1, date=None):
       for i in data:
         if no == True:
           if i[1] == (data_yesterday[counter])[1]:
-            today_count, yesterday_count = int((i[2]).replace(",", "")), int(((data_yesterday[counter])[2]).replace(",", ""))
+            today_count= int((i[2]).replace(",", ""))
+            for z in data_yesterday:
+              for y in data_yesterday[z]:
+                server = (y[1])
+                if server == x[1]:
+                  yesterday_count = int(y[2].replace(",", ""))
+                  break
             send+=f"**{i[0]}** {i[1]} **{i[2]}** `[+{today_count-yesterday_count}]`\n"
           else:
             for key in data_yest:
               for x in (data_yest[key]):
                 if x[1] == i[1]:
-                  today_count, yesterday_count = int((x[2]).replace(",", "")), int(((i)[2]).replace(",", ""))
+                  today_count= int((x[2]).replace(",", "")), 
+                  for z in data_yesterday:
+                    for y in data_yesterday[z]:
+                      server = (y[1])
+                      if server == x[1]:
+                        yesterday_count = int(y[2].replace(",", ""))
+                        break
                   e = int(x[0].replace("#",""))-int(i[0].replace("#",""))
                   if e < 0:
                     e = f"↓{int(e*-1)}"
