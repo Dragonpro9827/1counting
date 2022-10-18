@@ -58,7 +58,7 @@ async def daily(ctx, mode="lb"):
       try:
         num = int(((x[2]).replace(",", "")))
         for z in data_yesterday:
-          for y in data_yesterday[x]:
+          for y in data_yesterday[z]:
             server = (y[1])
             print(server)
             if server == x[0]:
