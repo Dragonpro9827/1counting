@@ -60,9 +60,7 @@ async def daily(ctx, mode="lb"):
         for z in data_yesterday:
           for y in data_yesterday[z]:
             server = (y[1])
-            print(x[0])
-            break
-            if server == x[0]:
+            if server == x[1]:
               num_yesterday = int(y[2].replace(",", ""))
               break
         ye = ((int(num)-int(num_yesterday)))
