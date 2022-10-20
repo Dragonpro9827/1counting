@@ -37,7 +37,7 @@ async def on_ready():
 
 
 @bot.command()
-async def daily(ctx, mode="lb"):
+async def daily(ctx, mode="lb", page=1):
   eg = {"lb": "lb", "ulb": "ulb"}
   today = datetime.datetime.now()
   date = f"{today.year}-{today.month}-{today.day}"
@@ -54,20 +54,23 @@ async def daily(ctx, mode="lb"):
   data_dict = {}
   for length in range(1, len(data)):
     counter = 0
-    for x in data[str(length)]:
-      try:
-        num = int(((x[2]).replace(",", "")))
-        for z in data_yesterday:
-          for y in data_yesterday[z]:
-            server = (y[1])
-            if server == x[1]:
-              num_yesterday = int(y[2].replace(",", ""))
-              break
-        ye = ((int(num)-int(num_yesterday)))
-        data_dict[(x[1])] = ye
-      except:
-        pass
-      counter+=1
+    try:
+      for x in data[str(length)]:
+        try:
+          num = int(((x[2]).replace(",", "")))
+          for z in data_yesterday:
+            for y in data_yesterday[z]:
+              server = (y[1])
+              if server == x[1]:
+                num_yesterday = int(y[2].replace(",", ""))
+                break
+          ye = ((int(num)-int(num_yesterday)))
+          data_dict[(x[1])] = ye
+        except:
+          pass
+        counter+=1
+    except:
+      pass
   data_dict = sorted(data_dict.items(), key=lambda item: item[1], reverse=True)
   counter = 1
   send=""
