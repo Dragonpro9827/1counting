@@ -295,6 +295,7 @@ async def lb(ctx, page=1, date=None):
       await ctx.channel.send("Page data wasnt collected | `-lb {page} {time}`")
       return
   
+	
 @bot.listen()
 async def on_message(message):
     channel = message.channel.id
