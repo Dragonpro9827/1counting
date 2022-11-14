@@ -300,7 +300,7 @@ async def on_message(message):
     channel = message.channel.id
     try:
       if message.author.id == 510016054391734273:
-	  c = database.cursor()
+	  			c = database.cursor()
           if "*HIGH SCORES*" == (message.embeds[0].title) or "*TOP USERS*" == (message.embeds[0].title):
             data, new_data = (message.embeds[0].description).split("\n"), []
             footer =  (message.embeds[0].footer.text).replace("c!help | Page ", "")
