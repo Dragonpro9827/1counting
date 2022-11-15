@@ -6,6 +6,7 @@ import os
 import time
 import json
 from difflib import SequenceMatcher
+from asyncio import sleep as s
 import asyncio
 import datetime
 import calendar
@@ -38,6 +39,7 @@ async def on_ready():
 
 @bot.command()
 async def daily(ctx, mode="lb", page=1):
+    c = database.cursor()
     eg = {"lb": "lb", "ulb": "ulb"}
     today = datetime.datetime.now()
     date = f"{today.year}-{today.month}-{today.day}"
@@ -71,8 +73,7 @@ async def daily(ctx, mode="lb", page=1):
                 counter += 1
         except:
             pass
-    data_dict = sorted(data_dict.items(),
-                       key=lambda item: item[1], reverse=True)
+    data_dict = sorted(data_dict.items(), key=lambda item: item[1], reverse=True)
     counter = 1
     send = ""
     print("A")
@@ -89,6 +90,7 @@ async def daily(ctx, mode="lb", page=1):
 
 @bot.command()
 async def finduser(ctx, name="", date=None):
+    c = database.cursor()
     channel = ctx.channel.id
     if name == "":
         return
@@ -126,6 +128,7 @@ async def finduser(ctx, name="", date=None):
 
 @bot.command()
 async def find(ctx, name="", date=None):
+    c = database.cursor()
     channel = ctx.channel.id
     eg = {"cho": "𝓣𝓱𝓮 𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓕𝓪𝓶𝓲𝓵𝔂™", "countaholics": "𝕮𝖔𝖚𝖓𝖙𝖆𝖍𝖔𝖑𝖎𝖈𝖘", "jake": "Jake & Oscar's Counting Paradise", "cu": "CU - Contadores Unidos",
           "ziggy": "The USSR Ziggy Express", "korland": "Delicious Korland", "maggies": "Maggie's Cat's", "catgirls": "Communist Catgirls"}
@@ -180,6 +183,7 @@ async def help(ctx):
 
 @bot.command()
 async def ulb(ctx, page=1, date=None):
+    c = database.cursor()
     channel = ctx.channel.id
     if date == None:
         today = datetime.datetime.now()
@@ -254,6 +258,7 @@ async def ulb(ctx, page=1, date=None):
 
 @bot.command()
 async def lb(ctx, page=1, date=None):
+    c = database.cursor()
     channel = ctx.channel.id
     if date == None:
         today = datetime.datetime.now()
