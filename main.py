@@ -290,16 +290,14 @@ async def lb(ctx, page=1, date=None):
         return
     try:
         c.execute("select list from lb where time=%s", (yesterday,))
-        data_yest = c.fetchone()[0]
-        data_yesterday = data_yest[str(page)]
+        data_yest, data_yesterday = c.fetchone()[0], data_yest[str(page)]
         no = True
     except:
         no = False
         pass
     try:
         data = data[str(page)]
-        send = ""
-        counter = 0
+        send, counter = "", 0
         for i in data:
             if no == True:
                 if i[1] == (data_yesterday[counter])[1]:
