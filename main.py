@@ -76,7 +76,6 @@ async def daily(ctx, mode="lb", page=1):
     data_dict = sorted(data_dict.items(), key=lambda item: item[1], reverse=True)
     counter = 1
     send = ""
-    print("A")
     for i in data_dict:
         if counter > 10:
             break
@@ -290,6 +289,7 @@ async def lb(ctx, page=1, date=None):
         return
     try:
         c.execute("select list from lb where time=%s", (yesterday,))
+        print(yesterday)
         data_yest, data_yesterday = c.fetchone()[0], data_yest[str(page)]
         no = True
     except:
