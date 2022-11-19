@@ -291,7 +291,7 @@ async def lb(ctx, page=1, date=None):
         c.execute("select list from lb where time=%s", (yesterday,))
         print(yesterday)
         data_yest = c.fetchone()[0]
-        data_yesterday = data_yest[str(page)]]
+        data_yesterday = data_yest[str(page)]
         no = True
     except:
         no = False
