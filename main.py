@@ -129,7 +129,7 @@ async def finduser(ctx, name="", date=None):
 async def find(ctx, name="", date=None):
     c = database.cursor()
     channel = ctx.channel.id
-    eg = {"cho": "𝓣𝓱𝓮 𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓕𝓪𝓶𝓲𝓵𝔂™", "countaholics": "𝕮𝖔𝖚𝖓𝖙𝖆𝖍𝖔𝖑𝖎𝖈𝖘", "jake": "Jake & Oscar's Counting Paradise", "cu": "CU - Contadores Unidos",
+    eg = {"cho": "𝓣𝓱𝓮 𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓕𝓪𝓶𝓲𝓵𝔂™", "countaholics": "𝕮𝖔𝖚𝖓𝖙𝖆𝖍𝖔𝖑𝖎𝖈𝖘", "jake": "𝓒𝓸𝓾𝓷𝓽𝓲𝓷𝓰 𝓟𝓪𝓻𝓪𝓭𝓲𝓼𝓮", "cu": "CU - Contadores Unidos",
           "ziggy": "The USSR Ziggy Express", "korland": "Delicious Korland", "maggies": "Maggie's Cat's", "catgirls": "Communist Catgirls"}
     if name == "list":
         send = ""
